@@ -23,7 +23,7 @@ export default {
   background-color: $primary;
   text-transform: uppercase;
   height: 5.4rem;
-  border-radius: 2rem;
+  border-radius: 3rem;
   color: white;
   letter-spacing: 0.045rem;
   font-weight: 900;
