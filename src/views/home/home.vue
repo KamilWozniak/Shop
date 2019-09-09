@@ -2,14 +2,22 @@
   <div class="home">
     <navigation />
     <div class="home__content">
-      <div class="home__content__header">
-        <div class="home__content__header__wrapper">
-          <h1 class="home__content__header--brand">olios</h1>
-          <h3 class="home__content__header--description">newest forniture shop template</h3>
+      <div class="home__content__header-wrapper">
+        <div class="home__content__header">
+          <div class="home__content__header--high-z-index">
+            <h1 class="home__content__header--brand">olios</h1>
+            <h3 class="home__content__header--description">
+              newest forniture shop template
+            </h3>
+
+            <custom-button width="25.1rem"
+                           class="home__content__header--button"
+                            @click.native="onMoreButtonClick">
+
+              view more
+            </custom-button>
+          </div>
           <span class="home__content__header--background">newest</span>
-          <custom-button width="25.1rem" class="home__content__header--button">
-            view more
-          </custom-button>
         </div>
       </div>
     </div>
@@ -27,6 +35,11 @@ export default {
     Navigation,
     CustomButton,
   },
+  methods: {
+    onMoreButtonClick() {
+      this.$router.push({ path: 'products' });
+    },
+  },
 };
 </script>
 
@@ -43,20 +56,27 @@ export default {
   height: 100%;
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-x: center;
+  background-position-x: 50%;
   background-position-y: 100%;
   overflow: hidden;
 
-  &__header {
-    padding-right: $navbar-width;
+
+  &__header-wrapper {
+    position: relative;
+    //padding-right: $navbar-width;
     text-transform: uppercase;
     margin-top: 8rem;
     text-align: center;
     display: flex;
     justify-content: center;
+  }
 
-    &__wrapper {
-      position: relative;
+  &__header {
+    position: relative;
+
+    &--high-z-index {
+      position:relative;
+      z-index: 2;
     }
 
     &--background {
@@ -69,7 +89,7 @@ export default {
       position: absolute;
       top: -5rem;
       right: -50rem;
-      border: 1px black solid;
+      z-index: 0;
     }
 
     &--brand {
@@ -85,7 +105,7 @@ export default {
     }
 
     &--button {
-      margin-top: 11rem;
+      margin-top: 5rem;
     }
   }
 }
