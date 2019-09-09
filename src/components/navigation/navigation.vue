@@ -27,6 +27,7 @@
                  class="router-link navigation__link">
 
       <svg viewBox="0 0 475.293 475.293"
+           xmlns="http://www.w3.org/2000/svg"
            fill="#d8d8d8"
            class="navigation__link__icon"
            :class="currentPath === '/checkout' ? 'active' : ''">
@@ -40,6 +41,7 @@
                  class="router-link navigation__link">
 
       <svg viewBox="0 0 32 32"
+           xmlns="http://www.w3.org/2000/svg"
            fill="#d8d8d8"
            class="navigation__link__icon"
            :class="currentPath === '/search' ? 'active' : ''">
@@ -89,7 +91,7 @@ export default {
 
     &__image {
       width: 42px;
-      height: 42px;
+      height: 422px;
     }
   }
 
