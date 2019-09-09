@@ -91,7 +91,7 @@ export default {
 
     &__image {
       width: 42px;
-      height: 422px;
+      height: 42px;
     }
   }
 
