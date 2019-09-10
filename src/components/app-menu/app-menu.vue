@@ -1,20 +1,33 @@
 <template>
-  <div class="app-menu">
-    <div class="app-menu__button">
-      <svg xmlns="http://www.w3.org/2000/svg"
-           viewBox="0 0 512 512"
-           fill="#000"
-           class="app-menu__icon">
+  <div class="app-menu" :class="{'show': isMenuVisible}">
+    <div @click="toggleMenu" class="app-menu__button">
+      <div v-if="!isMenuVisible">
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 512 512"
+             fill="#000"
+             class="app-menu__icon">
 
-        <path d="M491.318,235.318H20.682C9.26,235.318,0,244.577,0,256s9.26,20.682,20.682,20.682h470.636
-                c11.423,0,20.682-9.259,20.682-20.682C512,244.578,502.741,235.318,491.318,235.318z" />
+          <path d="M491.318,235.318H20.682C9.26,235.318,0,244.577,0,256s9.26,20.682,20.682,20.682h470.636
+                  c11.423,0,20.682-9.259,20.682-20.682C512,244.578,502.741,235.318,491.318,235.318z" />
 
-        <path d="M491.318,78.439H20.682C9.26,78.439,0,87.699,0,99.121c0,11.422,9.26,20.682,20.682,20.682h470.636
-                c11.423,0,20.682-9.26,20.682-20.682C512,87.699,502.741,78.439,491.318,78.439z" />
+          <path d="M491.318,78.439H20.682C9.26,78.439,0,87.699,0,99.121c0,11.422,9.26,20.682,20.682,20.682h470.636
+                  c11.423,0,20.682-9.26,20.682-20.682C512,87.699,502.741,78.439,491.318,78.439z" />
 
-        <path d="M491.318,392.197H20.682C9.26,392.197,0,401.456,0,412.879s9.26,20.682,20.682,20.682h470.636
-                c11.423,0,20.682-9.259,20.682-20.682S502.741,392.197,491.318,392.197z" />
-      </svg>
+          <path d="M491.318,392.197H20.682C9.26,392.197,0,401.456,0,412.879s9.26,20.682,20.682,20.682h470.636
+                  c11.423,0,20.682-9.259,20.682-20.682S502.741,392.197,491.318,392.197z" />
+        </svg>
+      </div>
+      <div v-else>
+        <svg xmlns="http://www.w3.org/2000/svg"
+             viewBox="0 0 47.971 47.971"
+             fill="#000"
+             class="app-menu__icon">
+          <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
+                   c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242
+                   C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879
+                   s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z"/>
+        </svg>
+      </div>
     </div>
     <div class="app-menu__content">
 
@@ -43,7 +56,14 @@ export default {
   data() {
     return {
       categories: ['asdasdsad', 'adadsa', 'adadasdsadasd', 'adadadsada'],
+      isMenuVisible: false,
+
     };
+  },
+  methods: {
+    toggleMenu() {
+      this.isMenuVisible = !this.isMenuVisible;
+    },
   },
 };
 
@@ -53,11 +73,12 @@ export default {
 
 .app-menu {
   position: fixed;
-  right: 0;
+  right: -$side-menu-width;
   top: 0;
-  width: 37.4rem;
+  width: $side-menu-width;
   background-color: white;
   z-index: 5;
+  transition: all ease-in-out 0.3s;
 
   &__button {
     position: fixed;
@@ -103,6 +124,10 @@ export default {
       margin: 5rem 0;
       color: #c1c1c1;
       text-decoration: none;
+      &:hover {
+        color: $primary;
+        text-decoration: underline;
+      }
 
       &--underline {
         margin-left: 1.8rem;
@@ -118,8 +143,13 @@ export default {
       bottom: 2%;
       left: 23%;
       color: $primary;
+      text-decoration: none !important;
     }
   }
+}
+
+.show {
+  transform: translateX(-$side-menu-width);
 }
 
 </style>
