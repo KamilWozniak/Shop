@@ -65,7 +65,6 @@ export default {
 
     &__header-wrapper {
       position: relative;
-      //padding-right: $navbar-width;
       text-transform: uppercase;
       margin-top: 8rem;
       text-align: center;
@@ -111,11 +110,5 @@ export default {
       }
     }
   }
-
-  /*&__menu {*/
-  /*  position: fixed;*/
-  /*  right: 5.7rem;*/
-  /*  top: 8.7rem;*/
-  /*}*/
 }
 </style>

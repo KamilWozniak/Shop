@@ -4,6 +4,20 @@
   </div>
 </template>
 
+<script>
+import { mapActions } from 'vuex';
+
+export default {
+  name: 'App',
+  methods: {
+    ...mapActions(['fetchCategories']),
+  },
+  created() {
+    this.fetchCategories();
+  },
+};
+</script>
+
 <style lang="scss">
 
 html {
