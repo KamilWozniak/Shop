@@ -1,6 +1,10 @@
 <template>
-  <div class="app-menu" :class="{'show': isMenuVisible}">
-    <div @click="toggleMenu" class="app-menu__button">
+  <div class="app-menu"
+       :class="{'show': isMenuVisible}">
+
+    <div @click="toggleMenu"
+         class="app-menu__button">
+
       <div v-if="!isMenuVisible">
         <svg xmlns="http://www.w3.org/2000/svg"
              viewBox="0 0 512 512"
