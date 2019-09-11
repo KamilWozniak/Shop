@@ -17,6 +17,11 @@ export default new Router({
       component: Home,
     },
     {
+      path: '/products/:category/:product',
+      name: 'product-details',
+      component: ProductDetails,
+    },
+    {
       path: '/products/:category',
       name: 'products',
       component: Products,
@@ -36,10 +41,10 @@ export default new Router({
       name: 'checkout',
       component: Checkout,
     },
-    {
-      path: '/product-details',
-      name: 'product-details',
-      component: ProductDetails,
-    },
+    // {
+    //   path: '/product-details',
+    //   name: 'product-details',
+    //   component: ProductDetails,
+    // },
   ],
 });

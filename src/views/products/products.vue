@@ -12,7 +12,7 @@
         <div v-if="categoryProducts.length === 0"
              class="products__container__no-results">
 
-          <h2>no results</h2>
+          <h2>brak dostępnych przedmiotów w sklepie</h2>
         </div>
       <div v-else
            class="products__container__product-list">
@@ -20,7 +20,8 @@
 
         <product-tile :key="product.id"
                       v-for="product in categoryProducts.slice(0, numberOfDisplayedProducts)"
-                      :product="product" />
+                      :product="product"
+                      @click.native="goToProduct(product.title)"/>
 
       </div>
       <div class="products__container__button-wrapper">
@@ -63,6 +64,9 @@ export default {
       if (this.categoryProducts.length < (this.numberOfDisplayedProducts + 6)) {
         this.numberOfDisplayedProducts = this.categoryProducts.length;
       }
+    },
+    goToProduct(name) {
+      this.$router.push({ path: `/products/${this.currentCategory}/${name}` });
     },
   },
   computed: {},
@@ -144,6 +148,7 @@ export default {
         font-size: 15rem;
         opacity: 0.3;
         padding-bottom: 10rem;
+        text-align: center;
       }
     }
   }

@@ -36,6 +36,10 @@ export default {
   cursor: pointer;
   padding: 1rem;
 
+  &:hover {
+    box-shadow: 2.5rem 2.5rem 2.5rem 0 rgba(219, 219, 219, 0.5);
+  }
+
   &__image-wrapper {
     display: flex;
     align-items: center;
