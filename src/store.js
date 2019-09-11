@@ -1,5 +1,5 @@
-import Vue from 'vue';
-import Vuex from 'vuex';
+import Vue   from 'vue';
+import Vuex  from 'vuex';
 import axios from 'axios';
 
 Vue.use(Vuex);
@@ -18,8 +18,12 @@ export default new Vuex.Store({
     // eslint-disable-next-line no-return-assign
     setProducts: (state, newProducts) => (state.products = newProducts),
     filterProducts: (state, category) => {
-      state.filteredProducts = state.products
-        .filter(product => product.categories === category);
+      if (category !== 'all categories') {
+        state.filteredProducts = state.products
+          .filter(product => product.categories === category);
+      } else {
+        state.filteredProducts = state.products;
+      }
     },
   },
   actions: {

@@ -5,15 +5,29 @@
       <div class="products__container__header">
         <h1 class="products__container__header__title">products</h1>
         <h4 class="products__container__header__category">
-          {{currentCategory ? currentCategory : 'all categories'}}
+          {{currentCategory}}
         </h4>
       </div>
-      <div class="products__container__product-list">
+
+        <div v-if="categoryProducts.length === 0"
+             class="products__container__no-results">
+
+          <h2>no results</h2>
+        </div>
+      <div v-else
+           class="products__container__product-list">
+
 
         <product-tile :key="product.id"
                       v-for="product in categoryProducts.slice(0, numberOfDisplayedProducts)"
-                      :product="product"/>
+                      :product="product" />
 
+      </div>
+      <div class="products__container__button-wrapper">
+        <button class="products__container__button" @click="showMoreProducts">
+
+          show more products
+        </button>
       </div>
     </div>
     <app-menu />
@@ -21,10 +35,10 @@
 </template>
 
 <script>
-import Navigation from '../../components/navigation/navigation.vue';
-import AppMenu from '../../components/app-menu/app-menu.vue';
+import Navigation  from '../../components/navigation/navigation.vue';
+import AppMenu     from '../../components/app-menu/app-menu.vue';
 import ProductTile from '../../components/product-tile/product-tile.vue';
-import store from '../../store';
+import store       from '../../store';
 
 export default {
   name: 'products',
@@ -35,24 +49,23 @@ export default {
   },
   data() {
     return {
-      currentCategory: this.$router.currentRoute.params.category ? this.$router.currentRoute.params.category : 'all',
+      currentCategory: this.$router.currentRoute.params.category ? this.$router.currentRoute.params.category : 'all categories',
       categoryProducts: [],
       numberOfDisplayedProducts: 6,
-
     };
   },
   methods: {
     showMoreProducts() {
       if (this.categoryProducts.length >= (this.numberOfDisplayedProducts + 6)) {
         this.numberOfDisplayedProducts += 6;
+        return;
       }
       if (this.categoryProducts.length < (this.numberOfDisplayedProducts + 6)) {
         this.numberOfDisplayedProducts = this.categoryProducts.length;
       }
     },
   },
-  computed: {
-  },
+  computed: {},
   created() {
     store.commit('filterProducts', this.currentCategory);
     this.categoryProducts = store.state.filteredProducts;
@@ -66,16 +79,17 @@ export default {
   grid-template-columns: $navbar-width 1fr;
 
   &__container {
-    background-color: #f0f0f0;
+    background-color: #F0F0F0;
 
-    padding: 7rem 40rem 12rem 25rem;
+    padding: 6rem 20rem 7rem 25rem;
     display: grid;
-    grid-template-rows: 2fr 16fr 1fr;
+    grid-template-rows: 20rem 1fr 4rem;
 
     &__header {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      padding-bottom: 6rem;
 
       &__title {
         text-transform: uppercase;
@@ -88,7 +102,7 @@ export default {
 
       &__category {
         letter-spacing: 0.045rem;
-        color: #c1c1c1;
+        color: #C1C1C1;
         text-transform: uppercase;
         margin-right: 10rem;
       }
@@ -96,9 +110,41 @@ export default {
 
     &__product-list {
       display: grid;
-      grid-template-rows: 1fr 1fr;
-      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 45rem;
+      grid-template-columns: repeat(3, 45rem);
       grid-gap: 5rem;
+      /*padding-left: 0rem;*/
+      padding-bottom: 3rem;
+      justify-content: center;
+
+    }
+
+    &__button-wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+    }
+
+    &__button {
+      border: none;
+      text-transform: uppercase;
+      background-color: unset;
+      cursor: pointer;
+      color: $primary;
+    }
+
+    &__no-results {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      & > * {
+        color: black;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 15rem;
+        opacity: 0.3;
+        padding-bottom: 10rem;
+      }
     }
   }
 }

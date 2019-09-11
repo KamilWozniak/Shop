@@ -1,7 +1,11 @@
 <template>
   <div class="product-tile">
     <div class="product-tile__image-wrapper">
-      <img class="product-tile__image" :src="`${product.picture}.png`" alt="product" >
+      <img class="product-tile__image"
+           :src="product.picture
+            ? `${product.picture}.png`
+             : 'https://wanowi.com/public/uploads/products/list/product-default.jpg'"
+           alt="product" >
     </div>
     <div class="product-tile__description-wraper">
       <p class="product-tile__description__title">{{product.title}}</p>
@@ -30,6 +34,7 @@ export default {
   grid-template-columns: 1fr;
   grid-template-rows: 6fr 4fr;
   cursor: pointer;
+  padding: 1rem;
 
   &__image-wrapper {
     display: flex;
