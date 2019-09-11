@@ -6,19 +6,31 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    CATEGORIES_CDN_URL: 'http://myjson.com/oqr65',
-    PRODUCTS_CDN_URL: 'http://myjson.com/kafkd',
+    CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
+    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/kafkd',
     categories: [],
     products: [],
+    filteredProducts: [],
   },
   mutations: {
     // eslint-disable-next-line no-return-assign
     setCategories: (state, newCategories) => (state.categories = newCategories),
+    // eslint-disable-next-line no-return-assign
+    setProducts: (state, newProducts) => (state.products = newProducts),
+    filterProducts: (state, category) => {
+      state.filteredProducts = state.products
+        .filter(product => product.categories === category);
+    },
   },
   actions: {
     fetchCategories({ commit }) {
-      axios.get('https://api.myjson.com/bins/oqr65')
+      axios.get(this.state.CATEGORIES_CDN_URL)
         .then(response => commit('setCategories', response.data.categories))
+        .catch(e => console.log(e));
+    },
+    fetchProducts({ commit }) {
+      axios.get(this.state.PRODUCTS_CDN_URL)
+        .then(response => commit('setProducts', response.data.products))
         .catch(e => console.log(e));
     },
   },

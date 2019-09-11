@@ -36,11 +36,12 @@
     </div>
     <div class="app-menu__content">
 
-      <router-link to="/products"
+      <router-link :to="`/products/${category.value}`"
                    v-for="category in categories"
                    :key="category.value"
-                   class="app-menu__content__item">{{category.value}}
+                   class="app-menu__content__item">
 
+        {{category.value}}
       </router-link>
 
       <router-link to="/products"
