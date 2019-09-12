@@ -27,7 +27,7 @@
       </router-link>
 
       <router-link to="/products"
-                   class="app-menu__content__item app-menu__content__item--all-products-link">
+                   class="app-menu__content__item app-menu__content__item--bottom-centered">
 
         <p>show all products</p>
         <div class="app-menu__content__item--underline"></div>
@@ -103,7 +103,7 @@ export default {
   &__content {
     height: 100vh;
     background-color: $white;
-    box-shadow: 0 0 25px 0 rgba(219, 219, 219, 0.5);
+    box-shadow: 0 0 2.5rem 0 rgba(219, 219, 219, 0.5);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -132,7 +132,7 @@ export default {
       }
     }
 
-    &__item--all-products-link {
+    &__item--bottom-centered {
       position: absolute;
       bottom: 2%;
       left: 15%;
