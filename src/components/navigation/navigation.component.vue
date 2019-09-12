@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import AppIcon from '../app-icon/app-icon.vue';
+import AppIcon from '../app-icon/app-icon.component.vue';
 
 export default {
   name: 'navigation',

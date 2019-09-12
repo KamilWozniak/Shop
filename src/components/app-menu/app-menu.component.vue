@@ -38,7 +38,7 @@
 
 <script>
 import { mapState } from 'vuex';
-import AppIcon      from '../app-icon/app-icon.vue';
+import AppIcon      from '../app-icon/app-icon.component.vue';
 
 export default {
   name: 'app-menu',

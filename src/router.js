@@ -1,10 +1,10 @@
-import Vue              from 'vue';
-import Router           from 'vue-router';
-import Home             from './views/home/home.vue';
-import Products         from './views/products/products.vue';
-import Search           from './views/search/search.vue';
-import Checkout         from './views/ckeckout/checkout.vue';
-import ProductDetails   from './views/product-details/product-details.vue';
+import Vue            from 'vue';
+import Router         from 'vue-router';
+import Home           from './views/home/home.view.vue';
+import Products       from './views/products/products.view.vue';
+import Search         from './views/search/search.view.vue';
+import Checkout       from './views/ckeckout/checkout.view.vue';
+import ProductDetails from './views/product-details/product-details.view.vue';
 
 Vue.use(Router);
 

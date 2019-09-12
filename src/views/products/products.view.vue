@@ -35,9 +35,9 @@
 </template>
 
 <script>
-import Navigation  from '../../components/navigation/navigation.vue';
-import AppMenu     from '../../components/app-menu/app-menu.vue';
-import ProductTile from '../../components/product-tile/product-tile.vue';
+import Navigation  from '../../components/navigation/navigation.component.vue';
+import AppMenu     from '../../components/app-menu/app-menu.component.vue';
+import ProductTile from '../../components/product-tile/product-tile.component.vue';
 import store       from '../../store';
 
 export default {

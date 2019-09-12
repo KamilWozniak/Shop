@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import Navigation   from '../../components/navigation/navigation.vue';
-import CustomButton from '../../components/custom-button/custom-button.vue';
-import AppMenu      from '../../components/app-menu/app-menu.vue';
+import Navigation   from '../../components/navigation/navigation.component.vue';
+import CustomButton from '../../components/custom-button/custom-button.component.vue';
+import AppMenu      from '../../components/app-menu/app-menu.component.vue';
 
 export default {
   name: 'home',
