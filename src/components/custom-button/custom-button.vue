@@ -1,5 +1,8 @@
 <template>
-  <button type="button" class="button" :style="`width: ${width}`">
+  <button type="button"
+          class="button"
+          :style="`width: ${width}`">
+
     <slot>Click here</slot>
   </button>
 </template>
@@ -24,7 +27,7 @@ export default {
   text-transform: uppercase;
   height: 5.4rem;
   border-radius: 3rem;
-  color: white;
+  color: $white;
   letter-spacing: 0.045rem;
   font-weight: 900;
   font-size: 1.8rem;

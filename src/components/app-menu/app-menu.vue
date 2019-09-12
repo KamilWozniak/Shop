@@ -1,6 +1,6 @@
 <template>
   <div class="app-menu"
-       :class="{'show': isMenuVisible}">
+       :class="{'app-menu--show': isMenuVisible}">
 
     <div @click="toggleMenu"
          class="app-menu__button">
@@ -115,7 +115,7 @@ export default {
 
     &__item {
       margin: 5rem 0;
-      color: $grey-200;
+      color: $grey-300;
       text-decoration: none;
 
       &:hover {
@@ -140,10 +140,10 @@ export default {
       text-decoration: none !important;
     }
   }
-}
 
-.show {
-  transform: translateX(-$side-menu-width);
+  &--show {
+    transform: translateX(-$side-menu-width);
+  }
 }
 
 </style>

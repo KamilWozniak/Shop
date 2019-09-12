@@ -12,21 +12,21 @@
                  class="router-link navigation__link">
 
       <app-icon icon="home"
-                :prop-class="currentPath === '/' ? 'active' : ''" />
+                :prop-class="currentPath === '/' ? 'navigation__link--active' : ''" />
 
     </router-link>
     <router-link to="/checkout"
                  class="router-link navigation__link">
 
       <app-icon icon="basket"
-                :prop-class="currentPath === '/checkout' ? 'active' : ''" />
+                :prop-class="currentPath === '/checkout' ? 'navigation__link--active' : ''" />
 
     </router-link>
     <router-link to="/search"
                  class="router-link navigation__link">
 
       <app-icon icon="search"
-                :prop-class="currentPath === '/search' ? 'active' : ''" />
+                :prop-class="currentPath === '/search' ? 'navigation__link--active' : ''" />
 
     </router-link>
   </div>
@@ -56,7 +56,7 @@ export default {
   justify-items: start;
   width: $navbar-width;
   height: 100vh;
-  background-color: white;
+  background-color: $white;
 
   &__logo {
     align-self: center;
@@ -68,12 +68,12 @@ export default {
       content: '.';
       margin-left: -0.5rem;
       font-size: 3rem;
-      color: #0018AC;
+      color: $blue-200;
     }
 
     &__image {
-      width: 42px;
-      height: 42px;
+      width: 4.2rem;
+      height: 4.2rem;
     }
   }
 
@@ -81,6 +81,11 @@ export default {
     height: auto;
     align-self: center;
     margin: 5rem 0;
+
+    &--active {
+      fill: $primary;
+
+    }
 
     &__icon {
       width: 2.6rem;
@@ -93,7 +98,4 @@ export default {
   }
 }
 
-.active {
-  fill: $primary;
-}
 </style>

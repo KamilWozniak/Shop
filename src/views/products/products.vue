@@ -106,7 +106,7 @@ export default {
 
         &__category {
           letter-spacing: 0.045rem;
-          color: $grey-200;
+          color: $grey-300;
           text-transform: uppercase;
           margin-right: 10rem;
         }
