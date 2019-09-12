@@ -51,13 +51,10 @@ export default {
   grid-template-columns: $navbar-width 1fr;
 
   &__content {
-    background-image: url("../../assets/img/photo-1449247709967-d4461a6a6103.png");
+    background: no-repeat url("../../assets/img/photo-1449247709967-d4461a6a6103.png");
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-repeat: no-repeat;
-    background-position-x: 50%;
-    background-position-y: 100%;
     overflow: hidden;
 
 

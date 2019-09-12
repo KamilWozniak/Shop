@@ -156,7 +156,7 @@ export default {
         justify-content: center;
 
         & > * {
-          color: black;
+          color: $black;
           text-transform: uppercase;
           font-weight: bolder;
           font-size: 15rem;
