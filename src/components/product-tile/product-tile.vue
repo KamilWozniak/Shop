@@ -32,8 +32,8 @@ export default {
 .product-tile {
   background-color: $white;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 6fr 4fr;
+  grid-template-columns: 100%;
+  grid-template-rows: 28rem 15rem;
   cursor: pointer;
   padding: 1rem;
 
@@ -73,6 +73,12 @@ export default {
       color: $grey-400;
       letter-spacing: 0.045rem;
       font-weight: 300;
+      max-height: 3rem;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      width: 100%;
+      display: block;
+      overflow: hidden;
     }
 
     &__price {
