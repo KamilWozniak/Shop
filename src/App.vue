@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <router-view/>
+    <router-view :key="this.$route.fullPath"/>
   </div>
 </template>
 
@@ -10,10 +10,11 @@ import { mapActions } from 'vuex';
 export default {
   name: 'App',
   methods: {
-    ...mapActions(['fetchCategories']),
+    ...mapActions(['fetchCategories', 'fetchProducts']),
   },
   created() {
     this.fetchCategories();
+    this.fetchProducts();
   },
 };
 </script>

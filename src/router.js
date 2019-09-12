@@ -1,14 +1,15 @@
-import Vue              from 'vue';
-import Router           from 'vue-router';
-import Home             from './views/home/home.vue';
-import Products         from './views/products/products.vue';
-import Search           from './views/search/search.vue';
-import Checkout         from './views/ckeckout/checkout.vue';
-import ProductDetails   from './views/product-details/product-details.vue';
+import Vue            from 'vue';
+import Router         from 'vue-router';
+import Home           from './views/home/home.view.vue';
+import Products       from './views/products/products.view.vue';
+import Search         from './views/search/search.view.vue';
+import Checkout       from './views/ckeckout/checkout.view.vue';
+import ProductDetails from './views/product-details/product-details.view.vue';
 
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -16,8 +17,18 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/products',
+      path: '/products/:category/:product',
+      name: 'product-details',
+      component: ProductDetails,
+    },
+    {
+      path: '/products/:category',
       name: 'products',
+      component: Products,
+    },
+    {
+      path: '/products',
+      name: 'all-products',
       component: Products,
     },
     {
@@ -30,10 +41,10 @@ export default new Router({
       name: 'checkout',
       component: Checkout,
     },
-    {
-      path: '/product-details',
-      name: 'product-details',
-      component: ProductDetails,
-    },
+    // {
+    //   path: '/product-details',
+    //   name: 'product-details',
+    //   component: ProductDetails,
+    // },
   ],
 });

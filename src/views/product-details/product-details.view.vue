@@ -1,5 +1,5 @@
 <template>
-  <p>here are product details</p>
+  <p>here are product details of {{this.$router.currentRoute.params.product}}</p>
 </template>
 
 <script>

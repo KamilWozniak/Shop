@@ -1,14 +1,14 @@
 <template>
-  <div class="checkout">
+  <div class="search">
     <navigation />
   </div>
 </template>
 
 <script>
-import Navigation from '../../components/navigation/navigation.vue';
+import Navigation from '../../components/navigation/navigation.component.vue';
 
 export default {
-  name: 'checkout',
+  name: 'search',
   components: {
     Navigation,
   },
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
-  .checkout {
+  .search {
     display: grid;
     grid-template-columns: $navbar-width 1fr;
   }

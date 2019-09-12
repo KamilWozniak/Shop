@@ -9,10 +9,9 @@
             <h3 class="home__content__header--description">
               newest forniture shop template
             </h3>
-
             <custom-button width="25.1rem"
                            class="home__content__header--button"
-                            @click.native="onMoreButtonClick">
+                           @click.native="onMoreButtonClick">
 
               view more
             </custom-button>
@@ -26,10 +25,9 @@
 </template>
 
 <script>
-import Navigation   from '../../components/navigation/navigation.vue';
-import CustomButton from '../../components/custom-button/custom-button.vue';
-import AppMenu      from '../../components/app-menu/app-menu.vue';
-// TODO: set eslint configuration to not requiring file extensions
+import Navigation   from '../../components/navigation/navigation.component.vue';
+import CustomButton from '../../components/custom-button/custom-button.component.vue';
+import AppMenu      from '../../components/app-menu/app-menu.component.vue';
 
 export default {
   name: 'home',
@@ -85,7 +83,7 @@ export default {
         opacity: 0.7;
         font-size: 40rem;
         letter-spacing: 1rem;
-        color: #E7E7E7;
+        color: $grey-200;
         text-transform: uppercase;
         position: absolute;
         top: -5rem;
@@ -96,12 +94,12 @@ export default {
       &--brand {
         font-weight: 200;
         font-size: 22rem;
-        letter-spacing: 0.55rem;
+        letter-spacing: 5.5px;
       }
 
       &--description {
         font-weight: 300;
-        letter-spacing: 0.09rem;
+        letter-spacing: 0.9px;
         font-size: 3.6rem;
       }
 
