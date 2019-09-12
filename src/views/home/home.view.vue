@@ -94,12 +94,12 @@ export default {
       &--brand {
         font-weight: 200;
         font-size: 22rem;
-        letter-spacing: 0.55rem;
+        letter-spacing: 5.5px;
       }
 
       &--description {
         font-weight: 300;
-        letter-spacing: 0.09rem;
+        letter-spacing: 0.9px;
         font-size: 3.6rem;
       }
 

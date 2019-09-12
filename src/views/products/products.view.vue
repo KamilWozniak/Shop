@@ -101,11 +101,11 @@ export default {
           font-weight: 300;
           color: $black;
           font-size: 7.2rem;
-          letter-spacing: 0.18rem;
+          letter-spacing: 1.8px;
         }
 
         &__category {
-          letter-spacing: 0.045rem;
+          letter-spacing: 4.5px;
           color: $grey-300;
           text-transform: uppercase;
           margin-right: 10rem;

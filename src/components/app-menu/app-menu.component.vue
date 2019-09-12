@@ -86,7 +86,7 @@ export default {
     border: none;
     border-radius: 5rem;
     cursor: pointer;
-    box-shadow: 0 0 25px 0 rgba(219, 219, 219, 0.5);
+    box-shadow: 0 0 2.5rem 0 rgba(219, 219, 219, 0.5);
     z-index: 7;
 
     &:hover {
@@ -110,7 +110,7 @@ export default {
     padding-right: 18rem;
     text-align: right;
     text-transform: uppercase;
-    letter-spacing: 0.045rem;
+    letter-spacing: 4.5px;
     position: relative;
 
     &__item {
@@ -127,7 +127,7 @@ export default {
         margin-left: 1.8rem;
         margin-top: 1rem;
         width: 16rem;
-        height: 0.1rem;
+        height: 1px;
         border: $primary 1px solid;
       }
     }

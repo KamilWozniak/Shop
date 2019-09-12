@@ -28,7 +28,7 @@ export default {
   height: 5.4rem;
   border-radius: 3rem;
   color: $white;
-  letter-spacing: 0.045rem;
+  letter-spacing: 4.5px;
   font-weight: 900;
   font-size: 1.8rem;
   cursor: pointer;

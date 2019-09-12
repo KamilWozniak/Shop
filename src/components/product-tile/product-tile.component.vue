@@ -71,7 +71,7 @@ export default {
     &__content {
       margin-top: 1rem;
       color: $grey-400;
-      letter-spacing: 0.045rem;
+      letter-spacing: 4.5px;
       font-weight: 300;
       max-height: 3rem;
       white-space: nowrap;
@@ -85,7 +85,7 @@ export default {
       margin-top: 2rem;
       color: $primary;
       font-weight: bold;
-      letter-spacing: 0.045rem;
+      letter-spacing: 4.5px;
     }
   }
 }

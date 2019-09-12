@@ -66,7 +66,7 @@ export default {
 
     &::after {
       content: '.';
-      margin-left: -0.5rem;
+      margin-left: -5px;
       font-size: 3rem;
       color: $blue-200;
     }
