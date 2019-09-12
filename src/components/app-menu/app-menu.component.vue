@@ -146,6 +146,48 @@ export default {
   }
 }
 
+@media screen and (max-width: $end-of-large-screen) {
+
+  .app-menu {
+    right: -$side-menu-width-md;
+    width: $side-menu-width-md;
+
+    &--show {
+      transform: translateX(-$side-menu-width-md);
+    }
+
+    &__button {
+      top: 5rem;
+      right: 4rem;
+      width: 5rem;
+      height: 5rem;
+    }
+    &__icon {
+      width: 2rem;
+      height: 2rem;
+    }
+
+    &__content {
+      padding-right: 10rem ;
+
+      &__item {
+        margin: 2rem 0;
+
+        &--underline {
+          margin-left: auto;
+          margin-right: auto;
+          margin-top: 1rem;
+        }
+      }
+      &__item--bottom-centered {
+        left: 2rem;
+        bottom: 1rem;
+      }
+    }
+  }
+}
+
+
 @media screen and (max-width: $end-of-medium-screen) {
 
   .app-menu {

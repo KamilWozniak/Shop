@@ -98,6 +98,23 @@ export default {
   }
 }
 
+@media screen and (max-width: $end-of-large-screen) {
+  .navigation {
+    width: $navbar-width-lg;
+    overflow: hidden;
+
+    &__logo {
+      margin-bottom: auto;
+    }
+
+    &__link {
+      margin-bottom: 4rem;
+      &:last-child {
+        margin-bottom: 40vh;
+      }
+    }
+  }
+}
 
 @media screen and (max-width: $end-of-medium-screen) {
   .navigation {
@@ -111,7 +128,7 @@ export default {
     &__link {
       margin-bottom: 4rem;
       &:last-child {
-        margin-bottom: 40vh;
+        margin-bottom: 50vh;
       }
     }
   }

@@ -107,6 +107,47 @@ export default {
   }
 }
 
+@media screen and (max-width: $end-of-large-screen) {
+  .home {
+    grid-template-columns: $navbar-width-lg 1fr;
+
+    &__content {
+      background-position-x: 50%;
+      height: 100vh;
+
+      &__header-wrapper {
+        margin-top: 10rem;
+      }
+
+      &__header {
+
+        &--background {
+          font-size: 14rem;
+          right: 0;
+          left: 0;
+          margin-left: auto;
+          margin-right: auto;
+          top: 0;
+
+        }
+
+        &--brand {
+          font-size: 9rem;
+        }
+
+        &--description {
+          font-size: 4rem;
+        }
+
+        &--button {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+
 @media screen and (max-width: $end-of-medium-screen) {
   .home {
     grid-template-columns: $navbar-width-md 1fr;
@@ -116,7 +157,7 @@ export default {
       height: 100vh;
 
       &__header-wrapper {
-        margin-top: 20rem;
+        margin-top: 15rem;
       }
 
       &__header {
