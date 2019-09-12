@@ -124,7 +124,7 @@ export default {
       }
 
       &--underline {
-        margin-left: 1.8rem;
+        margin-left: 5rem;
         margin-top: 1rem;
         width: 16rem;
         height: 1px;
@@ -135,7 +135,7 @@ export default {
     &__item--all-products-link {
       position: absolute;
       bottom: 2%;
-      left: 23%;
+      left: 15%;
       color: $primary;
       text-decoration: none !important;
     }
