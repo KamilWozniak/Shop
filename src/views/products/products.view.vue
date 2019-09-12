@@ -75,6 +75,20 @@ export default {
     store.commit('filterProducts', this.currentCategory);
     this.categoryProducts = store.state.filteredProducts;
   },
+  async beforeRouteEnter(to, from, next) {
+    const route = to.params.category ? to.params.category : 'all categories';
+    if (store.state.products.length === 0) {
+      await store.dispatch('fetchProducts');
+    }
+    store.commit('filterProducts', route);
+    const filtered = store.state.filteredProducts;
+    // this.categoryProducts = store.state.filteredProducts;
+
+    next((vm) => {
+      // eslint-disable-next-line no-param-reassign
+      vm.categoryProducts = filtered;
+    });
+  },
 };
 </script>
 

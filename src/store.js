@@ -27,13 +27,13 @@ export default new Vuex.Store({
     },
   },
   actions: {
-    fetchCategories({ commit }) {
-      axios.get(this.state.CATEGORIES_CDN_URL)
+    async fetchCategories({ commit }) {
+      await axios.get(this.state.CATEGORIES_CDN_URL)
         .then(response => commit('setCategories', response.data.categories))
         .catch(e => console.log(e));
     },
-    fetchProducts({ commit }) {
-      axios.get(this.state.PRODUCTS_CDN_URL)
+    async fetchProducts({ commit }) {
+      await axios.get(this.state.PRODUCTS_CDN_URL)
         .then(response => commit('setProducts', response.data.products))
         .catch(e => console.log(e));
     },
