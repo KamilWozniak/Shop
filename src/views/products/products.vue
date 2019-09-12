@@ -2,30 +2,29 @@
   <div class="products">
     <navigation />
     <div class="products__container">
-      <div class="products__container__header">
-        <h1 class="products__container__header__title">products</h1>
-        <h4 class="products__container__header__category">
+      <div class="container__header">
+        <h1 class="container__header__title">products</h1>
+        <h4 class="container__header__category">
           {{currentCategory}}
         </h4>
       </div>
+      <div v-if="categoryProducts.length === 0"
+           class="container__no-results">
 
-        <div v-if="categoryProducts.length === 0"
-             class="products__container__no-results">
-
-          <h2>brak dostępnych przedmiotów w sklepie</h2>
-        </div>
+        <h2>brak dostępnych przedmiotów w sklepie</h2>
+      </div>
       <div v-else
-           class="products__container__product-list">
-
+           class="container__product-list">
 
         <product-tile :key="product.id"
                       v-for="product in categoryProducts.slice(0, numberOfDisplayedProducts)"
                       :product="product"
-                      @click.native="goToProduct(product.title)"/>
+                      @click.native="goToProduct(product.title)" />
 
       </div>
-      <div class="products__container__button-wrapper">
-        <button class="products__container__button" @click="showMoreProducts">
+      <div class="container__button-wrapper">
+        <button class="container__button"
+                @click="showMoreProducts">
 
           show more products
         </button>
@@ -50,7 +49,9 @@ export default {
   },
   data() {
     return {
-      currentCategory: this.$router.currentRoute.params.category ? this.$router.currentRoute.params.category : 'all categories',
+      currentCategory: this.$router.currentRoute.params.category
+        ? this.$router.currentRoute.params.category
+        : 'all categories',
       categoryProducts: [],
       numberOfDisplayedProducts: 6,
     };
@@ -83,72 +84,72 @@ export default {
   grid-template-columns: $navbar-width 1fr;
 
   &__container {
-    background-color: #F0F0F0;
-
+    background-color: $grey-100;
     padding: 6rem 20rem 7rem 25rem;
     display: grid;
     grid-template-rows: 20rem 1fr 4rem;
 
-    &__header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-bottom: 6rem;
+    .container {
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 6rem;
 
-      &__title {
-        text-transform: uppercase;
-        font-weight: 300;
-        color: black;
-        font-size: 7.2rem;
-        letter-spacing: 0.18rem;
+        &__title {
+          text-transform: uppercase;
+          font-weight: 300;
+          color: $black;
+          font-size: 7.2rem;
+          letter-spacing: 0.18rem;
+        }
+
+        &__category {
+          letter-spacing: 0.045rem;
+          color: $grey-200;
+          text-transform: uppercase;
+          margin-right: 10rem;
+        }
+      }
+
+      &__product-list {
+        display: grid;
+        grid-auto-rows: 45rem;
+        grid-template-columns: repeat(3, 45rem);
+        grid-gap: 5rem;
+        padding-bottom: 3rem;
+        justify-content: center;
 
       }
 
-      &__category {
-        letter-spacing: 0.045rem;
-        color: #C1C1C1;
-        text-transform: uppercase;
-        margin-right: 10rem;
+      &__button-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
       }
-    }
 
-    &__product-list {
-      display: grid;
-      grid-auto-rows: 45rem;
-      grid-template-columns: repeat(3, 45rem);
-      grid-gap: 5rem;
-      /*padding-left: 0rem;*/
-      padding-bottom: 3rem;
-      justify-content: center;
-
-    }
-
-    &__button-wrapper {
-      display: flex;
-      justify-content: center;
-      align-items: flex-end;
-    }
-
-    &__button {
-      border: none;
-      text-transform: uppercase;
-      background-color: unset;
-      cursor: pointer;
-      color: $primary;
-    }
-
-    &__no-results {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      & > * {
-        color: black;
+      &__button {
+        border: none;
         text-transform: uppercase;
-        font-weight: bolder;
-        font-size: 15rem;
-        opacity: 0.3;
-        padding-bottom: 10rem;
-        text-align: center;
+        background-color: unset;
+        cursor: pointer;
+        color: $primary;
+      }
+
+      &__no-results {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        & > * {
+          color: black;
+          text-transform: uppercase;
+          font-weight: bolder;
+          font-size: 15rem;
+          opacity: 0.3;
+          padding-bottom: 10rem;
+          text-align: center;
+        }
       }
     }
   }
