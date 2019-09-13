@@ -171,24 +171,19 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-small-screen) {
+@media screen and (max-width: $end-of-medium-screen) {
   .products {
-    grid-template-rows: $navbar-width-sm 1fr;
-    grid-template-columns: 1fr;
-    /*height: 100vh;*/
+    grid-template-columns: $navbar-width-md 1fr;
+
 
     &__container {
-      min-height: calc(100vh - #{$navbar-width-sm});
-      background-color: $grey-100;
-      padding: 0;
-      display: grid;
-      grid-template-rows: 8rem 1fr 2rem;
+      padding: 1rem;
+      grid-template-rows: 8rem 1fr 4rem;
 
     }
 
     .container {
       &__header {
-        display: flex;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
@@ -198,20 +193,61 @@ export default {
           font-size: 3rem;
         }
         &__category {
-          letter-spacing: 4.5px;
-          color: $grey-300;
-          text-transform: uppercase;
           margin-right: 0;
         }
       }
       &__product-list {
         display: grid;
         grid-auto-rows: 45rem;
+        grid-template-columns: repeat(2, calc(50vw - #{$navbar-width-md}));
+        grid-gap: 3rem;
+        padding-bottom: 3rem;
+        padding-top: 3rem;
+        justify-content: center;
+      }
+      &__button {
+        padding-bottom: 1rem;
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: $end-of-small-screen) {
+  .products {
+    grid-template-rows: $navbar-width-sm 1fr;
+    grid-template-columns: 1fr;
+
+    &__container {
+      min-height: calc(100vh - #{$navbar-width-sm});
+      padding: 0;
+      grid-template-rows: 8rem 1fr 2rem;
+
+    }
+
+    .container {
+      &__header {
+        /*display: flex;*/
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 0;
+
+        &__title {
+          font-size: 3rem;
+        }
+        &__category {
+          margin-right: 0;
+        }
+      }
+      &__product-list {
+        /*display: grid;*/
+        /*grid-auto-rows: 45rem;*/
         grid-template-columns: 90vw;
         grid-gap: 3rem;
         padding-bottom: 3rem;
         padding-top: 1rem;
-        justify-content: center;
+        /*justify-content: center;*/
       }
       &__button {
         padding-bottom: 1rem;
