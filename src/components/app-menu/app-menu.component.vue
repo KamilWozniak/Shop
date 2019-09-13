@@ -246,6 +246,7 @@ export default {
       width: 5rem;
       height: 5rem;
     }
+
     &__icon {
       width: 2rem;
       height: 2rem;

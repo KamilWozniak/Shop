@@ -157,7 +157,7 @@ export default {
       height: 100vh;
 
       &__header-wrapper {
-        margin-top: 15rem;
+        margin-top: 10rem;
       }
 
       &__header {
@@ -169,7 +169,6 @@ export default {
           margin-left: auto;
           margin-right: auto;
           top: 0;
-
         }
 
         &--brand {
