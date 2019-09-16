@@ -2,34 +2,25 @@ import Vue   from 'vue';
 import Vuex  from 'vuex';
 import axios from 'axios';
 // eslint-disable-next-line import/no-cycle
-// import productsStore from './products.store';
+import productsStore from './products.store';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  // modules: {
-  //   productsStore,
-  // },
+  modules: {
+    productsStore,
+  },
   state: {
     CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
     PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/kafkd',
     categories: [],
     products: [],
-    filteredProducts: [],
   },
   mutations: {
     // eslint-disable-next-line no-return-assign
     setCategories: (state, newCategories) => (state.categories = newCategories),
     // eslint-disable-next-line no-return-assign
     setProducts: (state, newProducts) => (state.products = newProducts),
-    filterProducts: (state, category) => {
-      if (category !== 'all categories') {
-        state.filteredProducts = state.products
-          .filter(product => product.categories === category);
-      } else {
-        state.filteredProducts = state.products;
-      }
-    },
   },
   actions: {
     async fetchCategories({ commit }) {

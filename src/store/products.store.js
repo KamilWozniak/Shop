@@ -4,7 +4,6 @@ import store from './store';
 export default {
   state: {
     filteredProducts: [],
-    // products: this.rootState.products,
   },
   mutations: {
     filterProducts: (state, category) => {
