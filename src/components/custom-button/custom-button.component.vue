@@ -1,7 +1,6 @@
 <template>
   <button type="button"
-          class="button"
-          :style="`width: ${width}`">
+          class="button">
 
     <slot>Click here</slot>
   </button>
@@ -10,12 +9,6 @@
 <script>
 export default {
   name: 'custom-button',
-  props: {
-    width: {
-      type: String,
-      require: true,
-    },
-  },
 };
 
 </script>

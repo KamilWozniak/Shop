@@ -90,5 +90,26 @@ export default {
   }
 }
 
+@media screen and (max-width: $end-of-medium-screen){
+  .product-tile {
+    &__description {
+      padding: 1rem 2rem;
+      &__title {
+        font-size: 2rem;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $end-of-small-screen){
+    .product-tile {
+      &__description {
+        padding: 1rem 2rem;
+        &__title {
+          font-size: 3rem;
+        }
+      }
+    }
+}
 
 </style>

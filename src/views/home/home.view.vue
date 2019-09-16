@@ -9,8 +9,7 @@
             <h3 class="home__content__header--description">
               newest forniture shop template
             </h3>
-            <custom-button width="25.1rem"
-                           class="home__content__header--button"
+            <custom-button class="home__content__header--button"
                            @click.native="onMoreButtonClick">
 
               view more
@@ -102,6 +101,124 @@ export default {
 
       &--button {
         margin-top: 5rem;
+        width: 25rem
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $end-of-large-screen) {
+  .home {
+    grid-template-columns: $navbar-width-lg 1fr;
+
+    &__content {
+      background-position-x: 50%;
+      height: 100vh;
+
+      &__header-wrapper {
+        margin-top: 10rem;
+      }
+
+      &__header {
+
+        &--background {
+          font-size: 14rem;
+          right: 0;
+          left: 0;
+          margin-left: auto;
+          margin-right: auto;
+          top: 0;
+
+        }
+
+        &--brand {
+          font-size: 9rem;
+        }
+
+        &--description {
+          font-size: 4rem;
+        }
+
+        &--button {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+
+@media screen and (max-width: $end-of-medium-screen) {
+  .home {
+    grid-template-columns: $navbar-width-md 1fr;
+
+    &__content {
+      background-position-x: 50%;
+      height: 100vh;
+
+      &__header-wrapper {
+        margin-top: 10rem;
+      }
+
+      &__header {
+
+        &--background {
+          font-size: 10rem;
+          right: 0;
+          left: 0;
+          margin-left: auto;
+          margin-right: auto;
+          top: 0;
+        }
+
+        &--brand {
+          font-size: 9rem;
+        }
+
+        &--description {
+          font-size: 4rem;
+        }
+
+        &--button {
+          font-size: 2rem;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $end-of-small-screen) {
+  .home {
+    grid-template-columns: 1fr;
+    grid-template-rows: $navbar-width-sm 1fr;
+
+    &__content {
+      height: calc(100vh - #{$navbar-width-sm});
+      background-position-x: 50%;
+
+      &__header-wrapper {
+        margin-top: 10rem;
+      }
+
+      &__header {
+        &--background {
+          display: none;
+        }
+
+        &--brand {
+          font-size: 4rem;
+        }
+
+        &--description {
+          font-size: 2rem;
+        }
+
+        &--button {
+          font-size: 1.5rem;
+          padding: 1rem;
+          margin-top: 2rem;
+          height: 4rem;
+        }
       }
     }
   }

@@ -98,4 +98,60 @@ export default {
   }
 }
 
+@media screen and (max-width: $end-of-large-screen) {
+  .navigation {
+    width: $navbar-width-lg;
+    overflow: hidden;
+
+    &__logo {
+      margin-bottom: auto;
+    }
+
+    &__link {
+      margin-bottom: 4rem;
+      &:last-child {
+        margin-bottom: 40vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $end-of-medium-screen) {
+  .navigation {
+    width: $navbar-width-md;
+    overflow: hidden;
+
+    &__logo {
+      margin-bottom: auto;
+    }
+
+    &__link {
+      margin-bottom: 4rem;
+      &:last-child {
+        margin-bottom: 50vh;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: $end-of-small-screen) {
+  .navigation {
+    height: $navbar-width-sm;
+    flex-direction: row;
+    width: 100vw;
+    justify-content: space-around;
+
+    &__logo {
+      margin-bottom: 0;
+      margin-top: 5px;
+    }
+
+    &__link {
+      margin: 0;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
 </style>
