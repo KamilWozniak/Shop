@@ -3,11 +3,13 @@ import Vuex  from 'vuex';
 import axios from 'axios';
 // eslint-disable-next-line import/no-cycle
 import productsStore from './products.store';
+import checkoutStore from './checkout.store';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    checkoutStore,
     productsStore,
   },
   state: {

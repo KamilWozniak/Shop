@@ -15,7 +15,11 @@
         <p class="product-tile__description__price">$229</p>
       </div>
     </div>
-    <button @click.stop="addToCart" class="product-tile__btn">add to cart</button>
+    <button @click.stop="addToCart"
+            class="product-tile__btn">
+
+      {{inCart ? 'in cart' : 'add to cart'}}
+    </button>
   </div>
 </template>
 
@@ -27,9 +31,18 @@ export default {
       type: Object,
     },
   },
+  computed: {
+    inCart: {
+      get() {
+        return this.$store.getters.inCart(this.product.id);
+      },
+      set() {
+      },
+    },
+  },
   methods: {
     addToCart() {
-
+      if (!this.inCart) this.$store.commit('addToCart', this.product);
     },
   },
 };
@@ -62,7 +75,7 @@ export default {
     background: $primary;
     color: $white;
     border: none;
-    border-radius: 0 0 0 1rem ;
+    border-radius: 0 0 0 1rem;
     padding: 1rem;
     cursor: pointer;
   }
