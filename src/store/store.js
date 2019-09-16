@@ -1,10 +1,15 @@
 import Vue   from 'vue';
 import Vuex  from 'vuex';
 import axios from 'axios';
+// eslint-disable-next-line import/no-cycle
+// import productsStore from './products.store';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
+  // modules: {
+  //   productsStore,
+  // },
   state: {
     CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
     PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/kafkd',

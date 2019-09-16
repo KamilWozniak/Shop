@@ -24,6 +24,7 @@
       </div>
       <div class="container__button-wrapper">
         <button class="container__button"
+                :class="{'hide' : !isMore }"
                 @click="showMoreProducts">
 
           show more products
@@ -38,7 +39,8 @@
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import AppMenu     from '../../components/app-menu/app-menu.component.vue';
 import ProductTile from '../../components/product-tile/product-tile.component.vue';
-import store       from '../../store';
+import store       from '../../store/store';
+// import productsStore from '../../store/products.store';
 
 export default {
   name: 'products',
@@ -70,9 +72,45 @@ export default {
       this.$router.push({ path: `/products/${this.currentCategory}/${name}` });
     },
   },
-  computed: {},
+  computed: {
+    isMore() {
+      if (this.categoryProducts.length <= this.numberOfDisplayedProducts) {
+        return false;
+      }
+      return true;
+    },
+  },
   created() {
     store.commit('filterProducts', this.currentCategory);
+    // this.categoryProducts = [{
+    //   "id": 1,
+    //   "categories": "living room",
+    //   "picture": "https://imgur.com/1NqzLBz",
+    //   "title": "red seat",
+    //   "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    // },
+    //   {
+    //     "id": 2,
+    //     "categories": "living room",
+    //     "picture": "https://imgur.com/b9irMEW",
+    //     "title": "white talbe",
+    //     "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    //   },
+    //   {
+    //     "id": 3,
+    //     "categories": "living room",
+    //     "picture": "https://imgur.com/5ttWGYn",
+    //     "title": "blue seat",
+    //     "description": "Lorem ipsum dolor sit amet"
+    //   },
+    //   {
+    //     "id": 4,
+    //     "categories": "living room",
+    //     "picture": "https://imgur.com/knrEeJ1",
+    //     "title": "modern bed",
+    //     "description": "Lorem ipsum dolor sit amet"
+    //   }];
+    // this.categoryProducts = store.state.productsStore.filteredProducts;
     this.categoryProducts = store.state.filteredProducts;
   },
   async beforeRouteEnter(to, from, next) {
@@ -172,6 +210,9 @@ export default {
   }
 }
 
+.hide {
+  display: none;
+}
 @media screen and (max-width: $end-of-large-screen) {
   .products {
     grid-template-columns: $navbar-width-lg 1fr;
@@ -195,10 +236,12 @@ export default {
         &__title {
           font-size: 6rem;
         }
+
         &__category {
           margin-right: 0;
         }
       }
+
       &__no-results {
         & > * {
           font-size: 4rem;
@@ -206,6 +249,7 @@ export default {
 
         }
       }
+
       &__product-list {
         display: grid;
         grid-template-columns: repeat(2, calc(40vw - #{$navbar-width-md}));
@@ -213,6 +257,7 @@ export default {
         padding-bottom: 3rem;
         padding-top: 3rem;
       }
+
       &__button {
         padding-bottom: 1rem;
       }
@@ -242,10 +287,12 @@ export default {
         &__title {
           font-size: 3rem;
         }
+
         &__category {
           margin-right: 0;
         }
       }
+
       &__no-results {
         & > * {
           font-size: 2rem;
@@ -253,6 +300,7 @@ export default {
 
         }
       }
+
       &__product-list {
         display: grid;
         grid-template-columns: repeat(2, calc(50vw - #{$navbar-width-md}));
@@ -260,6 +308,7 @@ export default {
         padding-bottom: 3rem;
         padding-top: 3rem;
       }
+
       &__button {
         padding-bottom: 1rem;
       }
@@ -291,6 +340,7 @@ export default {
         &__title {
           font-size: 3rem;
         }
+
         &__category {
           margin-right: 0;
         }
@@ -311,6 +361,7 @@ export default {
         padding-bottom: 3rem;
         padding-top: 1rem;
       }
+
       &__button {
         padding-bottom: 1rem;
       }

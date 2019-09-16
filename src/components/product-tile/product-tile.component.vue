@@ -1,18 +1,21 @@
 <template>
-  <div class="product-tile">
-    <div class="product-tile__image-wrapper">
-      <img class="product-tile__image"
-           :src="product.picture
+  <div class="product-tile__wrapper">
+    <div class="product-tile">
+      <div class="product-tile__image-wrapper">
+        <img class="product-tile__image"
+             :src="product.picture
             ? `${product.picture}.png`
              : 'https://wanowi.com/public/uploads/products/list/product-default.jpg'"
-           alt="product">
+             alt="product">
 
+      </div>
+      <div class="product-tile__description">
+        <p class="product-tile__description__title">{{product.title}}</p>
+        <p class="product-tile__description__content">{{product.description}}</p>
+        <p class="product-tile__description__price">$229</p>
+      </div>
     </div>
-    <div class="product-tile__description">
-      <p class="product-tile__description__title">{{product.title}}</p>
-      <p class="product-tile__description__content">{{product.description}}</p>
-      <p class="product-tile__description__price">$229</p>
-    </div>
+    <button @click.stop="addToCart" class="product-tile__btn">add to cart</button>
   </div>
 </template>
 
@@ -22,6 +25,11 @@ export default {
   props: {
     product: {
       type: Object,
+    },
+  },
+  methods: {
+    addToCart() {
+
     },
   },
 };
@@ -39,6 +47,24 @@ export default {
 
   &:hover {
     box-shadow: 2.5rem 2.5rem 2.5rem 0 rgba(219, 219, 219, 0.5);
+  }
+
+  &__wrapper {
+    position: relative;
+    overflow: hidden;
+  }
+
+  &__btn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    text-transform: uppercase;
+    background: $primary;
+    color: $white;
+    border: none;
+    border-radius: 0 0 0 1rem ;
+    padding: 1rem;
+    cursor: pointer;
   }
 
   &__image-wrapper {
@@ -90,10 +116,11 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-medium-screen){
+@media screen and (max-width: $end-of-medium-screen) {
   .product-tile {
     &__description {
       padding: 1rem 2rem;
+
       &__title {
         font-size: 2rem;
       }
@@ -101,15 +128,16 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-small-screen){
-    .product-tile {
-      &__description {
-        padding: 1rem 2rem;
-        &__title {
-          font-size: 3rem;
-        }
+@media screen and (max-width: $end-of-small-screen) {
+  .product-tile {
+    &__description {
+      padding: 1rem 2rem;
+
+      &__title {
+        font-size: 3rem;
       }
     }
+  }
 }
 
 </style>

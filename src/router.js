@@ -41,10 +41,5 @@ export default new Router({
       name: 'checkout',
       component: Checkout,
     },
-    // {
-    //   path: '/product-details',
-    //   name: 'product-details',
-    //   component: ProductDetails,
-    // },
   ],
 });
