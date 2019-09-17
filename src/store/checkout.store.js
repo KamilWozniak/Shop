@@ -6,6 +6,9 @@ export default {
     addToCart(state, item) {
       if (state.cart.find(product => product.id === item.id)) {
         const index = state.cart.findIndex(product => product.id === item.id);
+        if (state.cart[index].amount >= state.cart[index].quantity) {
+          return;
+        }
         state.cart[index].amount += 1;
       } else {
         const newItem = {

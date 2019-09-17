@@ -17,7 +17,8 @@
     </div>
     <button @click.stop="addToCart"
             class="product-tile__btn"
-            :class="{'color-red': product.quantity === 0}">
+            :class="{'product-tile__btn--disabled product-tile__btn--black': product.quantity === 0,
+                      'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
 
       {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}
     </button>
@@ -47,6 +48,17 @@ export default {
       if (this.product.quantity > 0) {
         this.$store.commit('addToCart', this.product);
       }
+    },
+    checkIfCanOrderMore() {
+      if (this.inCart) {
+        const index = this.$store.state.checkoutStore.cart
+          .findIndex(product => product.id === this.product.id);
+        if (this.$store.state.checkoutStore.cart[index].amount
+          >= this.$store.state.checkoutStore.cart[index].quantity) {
+          return false;
+        }
+      }
+      return true;
     },
   },
 };
@@ -82,6 +94,15 @@ export default {
     border-radius: 0 0 0 1rem;
     padding: 1rem;
     cursor: pointer;
+
+    &--black {
+      color: $black;
+    }
+
+    &--disabled {
+      background-color: lighten($primary, 30);
+      cursor: unset;
+    }
   }
 
   &__info {
@@ -142,9 +163,6 @@ export default {
   }
 }
 
-.color-red {
-  color: red;
-}
 
 @media screen and (max-width: $end-of-medium-screen) {
   .product-tile {
