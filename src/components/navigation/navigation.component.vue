@@ -16,11 +16,16 @@
 
     </router-link>
     <router-link to="/checkout"
-                 class="router-link navigation__link">
+                 class="router-link navigation__link navigation__link--position-relative">
 
       <app-icon icon="basket"
                 :prop-class="currentPath === '/checkout' ? 'navigation__link--active' : ''" />
 
+      <div v-show="numberOfCartItems > 0"
+           class="navigation__link__cart-badge__wrapper">
+
+        <p class="navigation__link__cart-badge">{{numberOfCartItems}}</p>
+      </div>
     </router-link>
     <router-link to="/search"
                  class="router-link navigation__link">
@@ -44,6 +49,15 @@ export default {
     return {
       currentPath: this.$router.currentRoute.fullPath,
     };
+  },
+  computed: {
+    numberOfCartItems() {
+      let numberOfItems = 0;
+      this.$store.state.checkoutStore.cart.forEach((item) => {
+        numberOfItems += parseFloat(item.amount);
+      });
+      return numberOfItems;
+    },
   },
 };
 </script>
@@ -82,11 +96,33 @@ export default {
     align-self: center;
     margin: 5rem 0;
 
-    &--active {
-      fill: $primary;
-
+    &--position-relative {
+      position: relative;
     }
 
+    &--active {
+      fill: $primary;
+    }
+
+
+    &__cart-badge {
+      color: $white;
+      font-weight: bold;
+
+      &__wrapper {
+        position: absolute;
+        top: -2rem;
+        right: -2.9rem;
+        border: 1px $primary solid;
+        border-radius: 2rem;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+      }
+    }
     &__icon {
       width: 2.6rem;
       height: 2.6rem;
@@ -96,6 +132,13 @@ export default {
       }
     }
   }
+}
+
+.test {
+  background-color: red;
+  font-size: 4rem;
+  height: 50px;
+  width: 50px;
 }
 
 @media screen and (max-width: $end-of-large-screen) {

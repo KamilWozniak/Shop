@@ -1,16 +1,51 @@
 <template>
   <div class="checkout">
     <navigation />
+    <div class="checkout__content">
+      <div v-if="this.$store.state.checkoutStore.cart.length > 0" class="content__cart-items">
+        <h1 class="content__cart-items__title">Your order:</h1>
+        <div class="content__cart-items__list">
+          <product-tile v-for="product in cart"
+                        :key="`${product.id}`"
+                        :product="product" />
+
+        </div>
+        <h2 class="content__cart-items__total">
+          total:
+          <span class="content__cart-items__total--thin-font">{{`$${getTotal()}`}}</span>
+        </h2>
+      </div>
+      <div v-else class="checkout__content__empty-cart" >
+        <p class="content__empty-cart__message">Your cart is empty</p>
+      </div>
+      <p class="content__form">test</p>
+    </div>
   </div>
 </template>
 
 <script>
 import Navigation from '../../components/navigation/navigation.component.vue';
+import ProductTile from '../../components/checkout-product-tile/checkout-product-tile.component.vue';
 
 export default {
   name: 'checkout',
   components: {
     Navigation,
+    ProductTile,
+  },
+  computed: {
+    cart() {
+      return this.$store.state.checkoutStore.cart;
+    },
+  },
+  methods: {
+    getTotal() {
+      let total = 0;
+      this.$store.state.checkoutStore.cart.forEach((item) => {
+        total += (parseFloat(item.price) * parseFloat(item.amount));
+      });
+      return total;
+    },
   },
 };
 </script>
@@ -19,6 +54,62 @@ export default {
   .checkout {
     display: grid;
     grid-template-columns: $navbar-width 1fr;
+
+    &__content {
+      padding: 8rem;
+      background-color: $grey-100;
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      &__empty-cart {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+    }
+
+    .content {
+
+      &__cart-items {
+        padding-left: 25rem;
+
+        &__title {
+          font-size: 7.2rem;
+          letter-spacing: 1.8px;
+          color: $black;
+          font-weight: 300;
+        }
+
+        &__list {
+          margin-top: 10rem;
+          display: grid;
+          grid-template-columns: 1fr;
+          grid-auto-rows: 20rem;
+          grid-gap: 3rem;
+        }
+
+        &__total {
+          margin-top: 6rem;
+          text-transform: capitalize;
+          font-size: 7.2rem;
+          letter-spacing: 1.8px;
+          color: $black;
+          font-weight: normal;
+
+          &--thin-font {
+            font-weight: 300;
+            font-size: 7.2rem;
+            margin-left: 1rem;
+          }
+        }
+      }
+
+      &__empty-cart__message {
+        font-size: 7rem;
+        color: $grey-300;
+      }
+    }
   }
 
 </style>

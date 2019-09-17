@@ -12,14 +12,16 @@
       <div class="product-tile__description">
         <p class="product-tile__description__title">{{product.title}}</p>
         <p class="product-tile__description__content">{{product.description}}</p>
-        <p class="product-tile__description__price">$229</p>
+        <p class="product-tile__description__price">{{`$${product.price}`}}</p>
       </div>
     </div>
     <button @click.stop="addToCart"
-            class="product-tile__btn">
+            class="product-tile__btn"
+            :class="{'color-red': product.quantity === 0}">
 
-      {{inCart ? 'in cart' : 'add to cart'}}
+      {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}
     </button>
+    <span class="product-tile__info">{{inCart ? 'In Cart' : ''}}</span>
   </div>
 </template>
 
@@ -42,7 +44,9 @@ export default {
   },
   methods: {
     addToCart() {
-      if (!this.inCart) this.$store.commit('addToCart', this.product);
+      if (this.product.quantity > 0) {
+        this.$store.commit('addToCart', this.product);
+      }
     },
   },
 };
@@ -78,6 +82,15 @@ export default {
     border-radius: 0 0 0 1rem;
     padding: 1rem;
     cursor: pointer;
+  }
+
+  &__info {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 3rem;
+    padding: 1rem;
+    color: $grey-400;
   }
 
   &__image-wrapper {
@@ -127,6 +140,10 @@ export default {
       letter-spacing: 4.5px;
     }
   }
+}
+
+.color-red {
+  color: red;
 }
 
 @media screen and (max-width: $end-of-medium-screen) {

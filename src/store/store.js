@@ -14,7 +14,7 @@ export default new Vuex.Store({
   },
   state: {
     CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
-    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/kafkd',
+    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/10eus5',
     categories: [],
     products: [],
   },
