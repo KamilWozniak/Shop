@@ -162,6 +162,7 @@ export default {
       width: 5rem;
       height: 5rem;
     }
+
     &__icon {
       width: 2rem;
       height: 2rem;
@@ -179,6 +180,7 @@ export default {
           margin-top: 1rem;
         }
       }
+
       &__item--bottom-centered {
         left: 2rem;
         bottom: 1rem;
@@ -221,6 +223,7 @@ export default {
           margin-top: 1rem;
         }
       }
+
       &__item--bottom-centered {
         left: 2rem;
         bottom: 1rem;
@@ -265,6 +268,7 @@ export default {
           margin-top: 1rem;
         }
       }
+
       &__item--bottom-centered {
         position: static;
       }

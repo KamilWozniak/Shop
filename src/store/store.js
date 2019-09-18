@@ -1,9 +1,9 @@
-import Vue   from 'vue';
-import Vuex  from 'vuex';
-import axios from 'axios';
+import Vue           from 'vue';
+import Vuex          from 'vuex';
+import axios         from 'axios';
 // eslint-disable-next-line import/no-cycle
-import productsStore from './products.store';
-import checkoutStore from './checkout.store';
+import productsStore from '../views/products/store/products.store';
+import checkoutStore from '../views/ckeckout/store/checkout.store';
 
 Vue.use(Vuex);
 

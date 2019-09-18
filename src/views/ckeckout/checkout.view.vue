@@ -2,7 +2,9 @@
   <div class="checkout">
     <navigation />
     <div class="checkout__content">
-      <div v-if="this.$store.state.checkoutStore.cart.length > 0" class="content__cart-items">
+      <div v-if="this.$store.state.checkoutStore.cart.length > 0"
+           class="content__cart-items">
+
         <h1 class="content__cart-items__title">Your order:</h1>
         <div class="content__cart-items__list">
           <product-tile v-for="product in cart"
@@ -12,20 +14,25 @@
         </div>
         <h2 class="content__cart-items__total">
           total:
-          <span class="content__cart-items__total--thin-font">{{`$${getTotal()}`}}</span>
+          <span class="content__cart-items__total--thin-font">
+
+            {{`$${getTotal()}`}}
+          </span>
         </h2>
       </div>
-      <div v-else class="checkout__content__empty-cart" >
+      <div v-else
+           class="checkout__content__empty-cart" >
+
         <p class="content__empty-cart__message">Your cart is empty</p>
       </div>
-      <p class="content__form">test</p>
+      <p class="content__form">content form placeholder</p>
     </div>
   </div>
 </template>
 
 <script>
-import Navigation from '../../components/navigation/navigation.component.vue';
-import ProductTile from '../../components/checkout-product-tile/checkout-product-tile.component.vue';
+import Navigation  from '../../components/navigation/navigation.component.vue';
+import ProductTile from './components/checkout-product-tile.component.vue';
 
 export default {
   name: 'checkout',

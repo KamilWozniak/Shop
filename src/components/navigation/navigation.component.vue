@@ -123,6 +123,7 @@ export default {
         background-color: $primary;
       }
     }
+
     &__icon {
       width: 2.6rem;
       height: 2.6rem;
@@ -134,12 +135,6 @@ export default {
   }
 }
 
-.test {
-  background-color: red;
-  font-size: 4rem;
-  height: 50px;
-  width: 50px;
-}
 
 @media screen and (max-width: $end-of-large-screen) {
   .navigation {
@@ -152,6 +147,7 @@ export default {
 
     &__link {
       margin-bottom: 4rem;
+
       &:last-child {
         margin-bottom: 40vh;
       }
@@ -170,6 +166,7 @@ export default {
 
     &__link {
       margin-bottom: 4rem;
+
       &:last-child {
         margin-bottom: 50vh;
       }
@@ -191,6 +188,7 @@ export default {
 
     &__link {
       margin: 0;
+
       &:last-child {
         margin-bottom: 0;
       }

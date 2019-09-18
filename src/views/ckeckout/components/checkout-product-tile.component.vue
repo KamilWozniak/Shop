@@ -1,38 +1,50 @@
 <template>
   <div class="checkout-product-tile">
     <div class="checkout-product-tile__content"
-          @click="goToProduct">
+         @click="goToProduct">
+
       <div class="content__item">
         <img :src="product.picture
-            ? `${product.picture}.png`
-             : 'https://wanowi.com/public/uploads/products/list/product-default.jpg'"
+              ? `${product.picture}.png`
+              : 'https://wanowi.com/public/uploads/products/list/product-default.jpg'"
              alt="product"
              class="content__img">
+
       </div>
       <div class="content__item">
         <div class="content__description">
-          <h3 class="content__description__title">{{product.title}}</h3>
-          <p class="content__description__content">{{product.description}}</p>
+          <h3 class="content__description__title">
+
+            {{product.title}}
+          </h3>
+          <p class="content__description__content">
+
+            {{product.description}}
+          </p>
         </div>
       </div>
       <div class="content__item content__quantity">
         <span class="content__quantity__decrease"
               @click.stop="decreaseAmount(product.id)">
 
-          -
+          <span>-</span>
         </span>
         {{product.amount}}
         <span class="content__quantity__increase"
               @click.stop="increaseAmount(product.id)"
-              :class="{ 'hide' :product.amount === product.quantity }">
+              :class="{ 'content__quantity__increase--hidden'
+               :product.amount === product.quantity }">
 
-          +
+          <span>+</span>
         </span>
       </div>
-      <p class="content__item content__price">{{`$${product.price}`}}</p>
+      <p class="content__item content__price">
+
+        {{`$${product.price}`}}
+      </p>
     </div>
     <p class="checkout-product-tile__close-btn"
-        @click="removeFromCart(product.id)">
+       @click="removeFromCart(product.id)">
 
       &#215;
     </p>
@@ -64,6 +76,7 @@ export default {
 .checkout-product-tile {
   position: relative;
   background-color: $white;
+  cursor: pointer;
 
   &__content {
     display: grid;
@@ -77,6 +90,7 @@ export default {
       justify-content: center;
       align-items: center;
     }
+
     &__price {
       color: $primary;
       font-weight: bold;
@@ -88,15 +102,38 @@ export default {
     &__quantity {
       font-size: 2.5rem;
 
-      &__decrease {
+      &__decrease > span {
         margin-right: 1rem;
         font-size: 2.5rem;
         cursor: pointer;
+        width: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: $grey-200;
+          border-radius: 1rem;
+        }
       }
-      &__increase {
+
+      &__increase > span {
         margin-left: 1rem;
         font-size: 2.5rem;
         cursor: pointer;
+        width: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+          background-color: $grey-200;
+          border-radius: 1rem;
+        }
+
+        &--hidden {
+          display: none;
+        }
       }
     }
 
@@ -138,7 +175,4 @@ export default {
   }
 }
 
-.hide {
-  display: none;
-}
 </style>

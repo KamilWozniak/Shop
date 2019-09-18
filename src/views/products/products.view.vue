@@ -24,7 +24,7 @@
       </div>
       <div class="container__button-wrapper">
         <button class="container__button"
-                :class="{'hide' : !isMore }"
+                :class="{'container__button--hidden' : !isMore }"
                 @click="showMoreProducts">
 
           show more products
@@ -38,7 +38,7 @@
 <script>
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import AppMenu     from '../../components/app-menu/app-menu.component.vue';
-import ProductTile from '../../components/product-tile/product-tile.component.vue';
+import ProductTile from './components/product-tile.component.vue';
 import store       from '../../store/store';
 
 export default {
@@ -105,6 +105,7 @@ export default {
     min-height: 100vh;
 
     .container {
+
       &__header {
         display: flex;
         justify-content: space-between;
@@ -135,7 +136,6 @@ export default {
         grid-gap: 5rem;
         padding-bottom: 3rem;
         justify-content: center;
-
       }
 
       &__button-wrapper {
@@ -150,6 +150,10 @@ export default {
         background-color: unset;
         cursor: pointer;
         color: $primary;
+
+        &--hidden {
+          display: none;
+        }
       }
 
       &__no-results {
@@ -171,21 +175,14 @@ export default {
   }
 }
 
-.hide {
-  display: none;
-}
-
 @media screen and (max-width: $end-of-large-screen) {
   .products {
     grid-template-columns: $navbar-width-lg 1fr;
-
 
     &__container {
       grid-template-rows: 8rem 1fr 6rem;
       padding: 6rem 10rem 7rem 7rem;
       min-height: 100vh;
-
-
     }
 
     .container {
@@ -208,7 +205,6 @@ export default {
         & > * {
           font-size: 4rem;
           opacity: 0.3;
-
         }
       }
 
@@ -232,14 +228,13 @@ export default {
   .products {
     grid-template-columns: $navbar-width-md 1fr;
 
-
     &__container {
       padding: 1rem;
       grid-template-rows: 8rem 1fr 4rem;
-
     }
 
     .container {
+
       &__header {
         flex-direction: column;
         justify-content: space-between;
@@ -259,7 +254,6 @@ export default {
         & > * {
           font-size: 2rem;
           opacity: 0.3;
-
         }
       }
 
@@ -312,12 +306,10 @@ export default {
         & > * {
           font-size: 2rem;
           opacity: 0.3;
-
         }
       }
 
       &__product-list {
-
         grid-template-columns: 90vw;
         grid-gap: 3rem;
         padding-bottom: 3rem;

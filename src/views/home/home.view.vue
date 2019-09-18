@@ -56,7 +56,6 @@ export default {
     background-size: cover;
     overflow: hidden;
 
-
     &__header-wrapper {
       position: relative;
       text-transform: uppercase;
@@ -128,7 +127,6 @@ export default {
           margin-left: auto;
           margin-right: auto;
           top: 0;
-
         }
 
         &--brand {

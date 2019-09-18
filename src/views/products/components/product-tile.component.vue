@@ -4,7 +4,7 @@
       <div class="product-tile__image-wrapper">
         <img class="product-tile__image"
              :src="product.picture
-            ? `${product.picture}.png`
+             ? `${product.picture}.png`
              : 'https://wanowi.com/public/uploads/products/list/product-default.jpg'"
              alt="product">
 
@@ -18,11 +18,11 @@
     <button @click.stop="addToCart"
             class="product-tile__btn"
             :class="{'product-tile__btn--disabled product-tile__btn--black': product.quantity === 0,
-                      'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
+                     'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
 
       {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}
     </button>
-    <span class="product-tile__info">{{inCart ? 'In Cart' : ''}}</span>
+    <span class="product-tile__info">{{inCart ? `In Cart: ${howManyInCart}` : ''}}</span>
   </div>
 </template>
 
@@ -33,6 +33,11 @@ export default {
     product: {
       type: Object,
     },
+  },
+  data() {
+    return {
+      howManyInCart: 0,
+    };
   },
   computed: {
     inCart: {
@@ -53,6 +58,7 @@ export default {
       if (this.inCart) {
         const index = this.$store.state.checkoutStore.cart
           .findIndex(product => product.id === this.product.id);
+        this.howManyInCart = this.$store.state.checkoutStore.cart[index].amount;
         if (this.$store.state.checkoutStore.cart[index].amount
           >= this.$store.state.checkoutStore.cart[index].quantity) {
           return false;
@@ -138,7 +144,7 @@ export default {
       text-transform: uppercase;
       font-weight: 300;
       color: $black;
-      letter-spacing: 0.075rem;
+      letter-spacing: 0.75px;
     }
 
     &__content {
