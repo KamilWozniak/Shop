@@ -1,18 +1,20 @@
-import Vue   from 'vue';
-import Vuex  from 'vuex';
-import axios from 'axios';
+import Vue           from 'vue';
+import Vuex          from 'vuex';
+import axios         from 'axios';
 // eslint-disable-next-line import/no-cycle
-import productsStore from './products.store';
+import productsStore from '../views/products/store/products.store';
+import checkoutStore from '../views/ckeckout/store/checkout.store';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   modules: {
+    checkoutStore,
     productsStore,
   },
   state: {
     CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
-    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/kafkd',
+    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/10eus5',
     categories: [],
     products: [],
   },

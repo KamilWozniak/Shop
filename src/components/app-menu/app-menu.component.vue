@@ -27,7 +27,7 @@
       </router-link>
 
       <router-link to="/products"
-                   class="app-menu__content__item app-menu__content__item--bottom-centered">
+                   class="app-menu__content__item app-menu__content__item__show-all-link">
 
         <p>show all products</p>
         <div class="app-menu__content__item--underline"></div>
@@ -86,7 +86,7 @@ export default {
     border: none;
     border-radius: 5rem;
     cursor: pointer;
-    box-shadow: 0 0 2.5rem 0 rgba(219, 219, 219, 0.5);
+    box-shadow: 0 0 2.5rem 0 $box-shadow-color;
     z-index: 7;
 
     &:hover {
@@ -103,7 +103,7 @@ export default {
   &__content {
     height: 100vh;
     background-color: $white;
-    box-shadow: 0 0 2.5rem 0 rgba(219, 219, 219, 0.5);
+    box-shadow: 0 0 2.5rem 0 $box-shadow-color;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,6 +118,14 @@ export default {
       color: $grey-300;
       text-decoration: none;
 
+      &__show-all-link {
+        position: absolute;
+        bottom: 2%;
+        left: 15%;
+        color: $primary;
+        text-decoration: none !important;
+      }
+
       &:hover {
         color: $primary;
         text-decoration: underline;
@@ -131,14 +139,6 @@ export default {
         border: $primary 1px solid;
       }
     }
-
-    &__item--bottom-centered {
-      position: absolute;
-      bottom: 2%;
-      left: 15%;
-      color: $primary;
-      text-decoration: none !important;
-    }
   }
 
   &--show {
@@ -146,7 +146,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
 
   .app-menu {
     right: -$side-menu-width-md;
@@ -162,33 +162,35 @@ export default {
       width: 5rem;
       height: 5rem;
     }
+
     &__icon {
       width: 2rem;
       height: 2rem;
     }
 
     &__content {
-      padding-right: 10rem ;
+      padding-right: 10rem;
 
       &__item {
         margin: 2rem 0;
+
+        &__show-all-link {
+          left: 2rem;
+          bottom: 1rem;
+        }
 
         &--underline {
           margin-left: auto;
           margin-right: auto;
           margin-top: 1rem;
         }
-      }
-      &__item--bottom-centered {
-        left: 2rem;
-        bottom: 1rem;
       }
     }
   }
 }
 
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
 
   .app-menu {
     right: -$side-menu-width-md;
@@ -204,26 +206,28 @@ export default {
       width: 5rem;
       height: 5rem;
     }
+
     &__icon {
       width: 2rem;
       height: 2rem;
     }
 
     &__content {
-      padding-right: 10rem ;
+      padding-right: 10rem;
 
       &__item {
         margin: 2rem 0;
+
+        &__show-all-link {
+          left: 2rem;
+          bottom: 1rem;
+        }
 
         &--underline {
           margin-left: auto;
           margin-right: auto;
           margin-top: 1rem;
         }
-      }
-      &__item--bottom-centered {
-        left: 2rem;
-        bottom: 1rem;
       }
     }
   }
@@ -259,14 +263,15 @@ export default {
       &__item {
         margin: 2rem 0;
 
+        &__show-all-link {
+          position: static;
+        }
+
         &--underline {
           margin-left: auto;
           margin-right: auto;
           margin-top: 1rem;
         }
-      }
-      &__item--bottom-centered {
-        position: static;
       }
     }
   }

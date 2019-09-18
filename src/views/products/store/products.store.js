@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-cycle
-import store from './store';
+import store from '../../../store/store';
 
 export default {
   state: {

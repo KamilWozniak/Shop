@@ -16,11 +16,16 @@
 
     </router-link>
     <router-link to="/checkout"
-                 class="router-link navigation__link">
+                 class="router-link navigation__link navigation__link--position-relative">
 
       <app-icon icon="basket"
                 :prop-class="currentPath === '/checkout' ? 'navigation__link--active' : ''" />
 
+      <div v-show="numberOfCartItems > 0"
+           class="navigation__link__cart-badge__wrapper">
+
+        <p class="navigation__link__cart-badge">{{numberOfCartItems}}</p>
+      </div>
     </router-link>
     <router-link to="/search"
                  class="router-link navigation__link">
@@ -45,11 +50,20 @@ export default {
       currentPath: this.$router.currentRoute.fullPath,
     };
   },
+  computed: {
+    numberOfCartItems() {
+      let numberOfItems = 0;
+      this.$store.state.checkoutStore.cart.forEach((item) => {
+        numberOfItems += parseFloat(item.amount);
+      });
+      return numberOfItems;
+    },
+  },
 };
 </script>
 
-
 <style scoped lang="scss">
+
 .navigation {
   display: flex;
   flex-direction: column;
@@ -82,9 +96,31 @@ export default {
     align-self: center;
     margin: 5rem 0;
 
+    &--position-relative {
+      position: relative;
+    }
+
     &--active {
       fill: $primary;
+    }
 
+    &__cart-badge {
+      color: $white;
+      font-weight: bold;
+
+      &__wrapper {
+        position: absolute;
+        top: -2rem;
+        right: -2.9rem;
+        border: 1px $primary solid;
+        border-radius: 2rem;
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: $primary;
+      }
     }
 
     &__icon {
@@ -98,7 +134,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .navigation {
     width: $navbar-width-lg;
     overflow: hidden;
@@ -109,6 +145,7 @@ export default {
 
     &__link {
       margin-bottom: 4rem;
+
       &:last-child {
         margin-bottom: 40vh;
       }
@@ -116,7 +153,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .navigation {
     width: $navbar-width-md;
     overflow: hidden;
@@ -127,6 +164,7 @@ export default {
 
     &__link {
       margin-bottom: 4rem;
+
       &:last-child {
         margin-bottom: 50vh;
       }
@@ -148,6 +186,7 @@ export default {
 
     &__link {
       margin: 0;
+
       &:last-child {
         margin-bottom: 0;
       }

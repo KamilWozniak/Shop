@@ -24,7 +24,7 @@
       </div>
       <div class="container__button-wrapper">
         <button class="container__button"
-                :class="{'hide' : !isMore }"
+                :class="{'container__button--hidden' : !isMore }"
                 @click="showMoreProducts">
 
           show more products
@@ -38,7 +38,7 @@
 <script>
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import AppMenu     from '../../components/app-menu/app-menu.component.vue';
-import ProductTile from '../../components/product-tile/product-tile.component.vue';
+import ProductTile from './components/product-tile.component.vue';
 import store       from '../../store/store';
 
 export default {
@@ -96,7 +96,6 @@ export default {
   display: grid;
   grid-template-columns: $navbar-width 1fr;
 
-
   &__container {
     background-color: $grey-100;
     padding: 6rem 20rem 7rem 25rem;
@@ -105,6 +104,7 @@ export default {
     min-height: 100vh;
 
     .container {
+
       &__header {
         display: flex;
         justify-content: space-between;
@@ -117,7 +117,6 @@ export default {
           color: $black;
           font-size: 7.2rem;
           letter-spacing: 1.8px;
-
         }
 
         &__category {
@@ -135,7 +134,6 @@ export default {
         grid-gap: 5rem;
         padding-bottom: 3rem;
         justify-content: center;
-
       }
 
       &__button-wrapper {
@@ -150,6 +148,10 @@ export default {
         background-color: unset;
         cursor: pointer;
         color: $primary;
+
+        &--hidden {
+          display: none;
+        }
       }
 
       &__no-results {
@@ -171,24 +173,18 @@ export default {
   }
 }
 
-.hide {
-  display: none;
-}
-
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .products {
     grid-template-columns: $navbar-width-lg 1fr;
-
 
     &__container {
       grid-template-rows: 8rem 1fr 6rem;
       padding: 6rem 10rem 7rem 7rem;
       min-height: 100vh;
-
-
     }
 
     .container {
+
       &__header {
         flex-direction: row;
         justify-content: space-between;
@@ -208,7 +204,6 @@ export default {
         & > * {
           font-size: 4rem;
           opacity: 0.3;
-
         }
       }
 
@@ -228,18 +223,17 @@ export default {
 }
 
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .products {
     grid-template-columns: $navbar-width-md 1fr;
-
 
     &__container {
       padding: 1rem;
       grid-template-rows: 8rem 1fr 4rem;
-
     }
 
     .container {
+
       &__header {
         flex-direction: column;
         justify-content: space-between;
@@ -259,7 +253,6 @@ export default {
         & > * {
           font-size: 2rem;
           opacity: 0.3;
-
         }
       }
 
@@ -278,7 +271,6 @@ export default {
   }
 }
 
-
 @media screen and (max-width: $end-of-small-screen) {
   .products {
     grid-template-rows: $navbar-width-sm 1fr;
@@ -289,10 +281,10 @@ export default {
       min-height: calc(100vh - #{$navbar-width-sm});
       padding: 0;
       grid-template-rows: 8rem 1fr 2rem;
-
     }
 
     .container {
+
       &__header {
         flex-direction: column;
         justify-content: space-between;
@@ -312,12 +304,10 @@ export default {
         & > * {
           font-size: 2rem;
           opacity: 0.3;
-
         }
       }
 
       &__product-list {
-
         grid-template-columns: 90vw;
         grid-gap: 3rem;
         padding-bottom: 3rem;
