@@ -2,13 +2,13 @@
   <div class="checkout">
     <navigation />
     <div class="checkout__content">
-      <div v-if="this.$store.state.checkoutStore.cart.length > 0"
+      <div v-if="!isCartEmpty"
            class="content__cart-items">
 
         <h1 class="content__cart-items__title">Your order:</h1>
         <div class="content__cart-items__list">
           <product-tile v-for="product in cart"
-                        :key="`${product.id}`"
+                        :key="product.id"
                         :product="product" />
 
         </div>
@@ -16,7 +16,7 @@
           total:
           <span class="content__cart-items__total--thin-font">
 
-            {{`$${getTotal()}`}}
+            ${{getTotal()}}
           </span>
         </h2>
       </div>
@@ -43,6 +43,9 @@ export default {
   computed: {
     cart() {
       return this.$store.state.checkoutStore.cart;
+    },
+    isCartEmpty() {
+      return this.$store.state.checkoutStore.cart.length <= 0;
     },
   },
   methods: {

@@ -39,5 +39,4 @@ export default {
   getters: {
     inCart: state => id => state.cart.find(item => item.id === id),
   },
-  actions: {},
 };

@@ -10,9 +10,18 @@
 
       </div>
       <div class="product-tile__description">
-        <p class="product-tile__description__title">{{product.title}}</p>
-        <p class="product-tile__description__content">{{product.description}}</p>
-        <p class="product-tile__description__price">{{`$${product.price}`}}</p>
+        <p class="description__title">
+
+          {{product.title}}
+        </p>
+        <p class="description__content">
+
+          {{product.description}}
+        </p>
+        <p class="description__price">
+
+          {{`$${product.price}`}}
+        </p>
       </div>
     </div>
     <button @click.stop="addToCart"
@@ -81,7 +90,7 @@ export default {
   padding: 1rem;
 
   &:hover {
-    box-shadow: 2.5rem 2.5rem 2.5rem 0 rgba(219, 219, 219, 0.5);
+    box-shadow: 2.5rem 2.5rem 2.5rem 0 $box-shadow-color;
   }
 
   &__wrapper {
@@ -139,43 +148,45 @@ export default {
     align-content: space-between;
     padding: 1rem 5rem;
 
-    &__title {
-      font-size: 3rem;
-      text-transform: uppercase;
-      font-weight: 300;
-      color: $black;
-      letter-spacing: 0.75px;
-    }
+    .description {
+      &__title {
+        font-size: 3rem;
+        text-transform: uppercase;
+        font-weight: 300;
+        color: $black;
+        letter-spacing: 0.75px;
+      }
 
-    &__content {
-      margin-top: 1rem;
-      color: $grey-400;
-      letter-spacing: 4.5px;
-      font-weight: 300;
-      max-height: 3rem;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      width: 100%;
-      display: block;
-      overflow: hidden;
-    }
+      &__content {
+        margin-top: 1rem;
+        color: $grey-400;
+        letter-spacing: 4.5px;
+        font-weight: 300;
+        max-height: 3rem;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 100%;
+        display: block;
+        overflow: hidden;
+      }
 
-    &__price {
-      margin-top: 2rem;
-      color: $primary;
-      font-weight: bold;
-      letter-spacing: 4.5px;
+      &__price {
+        margin-top: 2rem;
+        color: $primary;
+        font-weight: bold;
+        letter-spacing: 4.5px;
+      }
     }
   }
 }
 
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .product-tile {
     &__description {
       padding: 1rem 2rem;
 
-      &__title {
+      .description__title {
         font-size: 2rem;
       }
     }
@@ -187,7 +198,7 @@ export default {
     &__description {
       padding: 1rem 2rem;
 
-      &__title {
+      .description__title {
         font-size: 3rem;
       }
     }

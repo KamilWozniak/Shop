@@ -5,17 +5,17 @@
       <div class="home__content__header-wrapper">
         <div class="home__content__header">
           <div class="home__content__header--high-z-index">
-            <h1 class="home__content__header--brand">olios</h1>
-            <h3 class="home__content__header--description">
+            <h1 class="home__content__header__brand">olios</h1>
+            <h3 class="home__content__header__description">
               newest forniture shop template
             </h3>
-            <custom-button class="home__content__header--button"
+            <custom-button class="home__content__header__button"
                            @click.native="onMoreButtonClick">
 
               view more
             </custom-button>
           </div>
-          <span class="home__content__header--background">newest</span>
+          <span class="home__content__header__background">newest</span>
         </div>
       </div>
     </div>
@@ -73,7 +73,7 @@ export default {
         z-index: 2;
       }
 
-      &--background {
+      &__background {
         font-weight: 900;
         opacity: 0.7;
         font-size: 40rem;
@@ -86,19 +86,19 @@ export default {
         z-index: 0;
       }
 
-      &--brand {
+      &__brand {
         font-weight: 200;
         font-size: 22rem;
         letter-spacing: 5.5px;
       }
 
-      &--description {
+      &__description {
         font-weight: 300;
         letter-spacing: 0.9px;
         font-size: 3.6rem;
       }
 
-      &--button {
+      &__button {
         margin-top: 5rem;
         width: 25rem
       }
@@ -106,7 +106,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .home {
     grid-template-columns: $navbar-width-lg 1fr;
 
@@ -120,7 +120,7 @@ export default {
 
       &__header {
 
-        &--background {
+        &__background {
           font-size: 14rem;
           right: 0;
           left: 0;
@@ -129,15 +129,15 @@ export default {
           top: 0;
         }
 
-        &--brand {
+        &__brand {
           font-size: 9rem;
         }
 
-        &--description {
+        &__description {
           font-size: 4rem;
         }
 
-        &--button {
+        &__button {
           font-size: 2rem;
         }
       }
@@ -145,8 +145,7 @@ export default {
   }
 }
 
-
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .home {
     grid-template-columns: $navbar-width-md 1fr;
 
@@ -160,7 +159,7 @@ export default {
 
       &__header {
 
-        &--background {
+        &__background {
           font-size: 10rem;
           right: 0;
           left: 0;
@@ -169,15 +168,15 @@ export default {
           top: 0;
         }
 
-        &--brand {
+        &__brand {
           font-size: 9rem;
         }
 
-        &--description {
+        &__description {
           font-size: 4rem;
         }
 
-        &--button {
+        &__button {
           font-size: 2rem;
         }
       }
@@ -199,19 +198,19 @@ export default {
       }
 
       &__header {
-        &--background {
+        &__background {
           display: none;
         }
 
-        &--brand {
+        &__brand {
           font-size: 4rem;
         }
 
-        &--description {
+        &__description {
           font-size: 2rem;
         }
 
-        &--button {
+        &__button {
           font-size: 1.5rem;
           padding: 1rem;
           margin-top: 2rem;

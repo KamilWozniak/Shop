@@ -96,7 +96,6 @@ export default {
   display: grid;
   grid-template-columns: $navbar-width 1fr;
 
-
   &__container {
     background-color: $grey-100;
     padding: 6rem 20rem 7rem 25rem;
@@ -118,7 +117,6 @@ export default {
           color: $black;
           font-size: 7.2rem;
           letter-spacing: 1.8px;
-
         }
 
         &__category {
@@ -175,7 +173,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .products {
     grid-template-columns: $navbar-width-lg 1fr;
 
@@ -186,6 +184,7 @@ export default {
     }
 
     .container {
+
       &__header {
         flex-direction: row;
         justify-content: space-between;
@@ -224,7 +223,7 @@ export default {
 }
 
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .products {
     grid-template-columns: $navbar-width-md 1fr;
 
@@ -272,7 +271,6 @@ export default {
   }
 }
 
-
 @media screen and (max-width: $end-of-small-screen) {
   .products {
     grid-template-rows: $navbar-width-sm 1fr;
@@ -283,10 +281,10 @@ export default {
       min-height: calc(100vh - #{$navbar-width-sm});
       padding: 0;
       grid-template-rows: 8rem 1fr 2rem;
-
     }
 
     .container {
+
       &__header {
         flex-direction: column;
         justify-content: space-between;

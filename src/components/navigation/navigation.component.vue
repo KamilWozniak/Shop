@@ -62,8 +62,8 @@ export default {
 };
 </script>
 
-
 <style scoped lang="scss">
+
 .navigation {
   display: flex;
   flex-direction: column;
@@ -104,7 +104,6 @@ export default {
       fill: $primary;
     }
 
-
     &__cart-badge {
       color: $white;
       font-weight: bold;
@@ -135,8 +134,7 @@ export default {
   }
 }
 
-
-@media screen and (max-width: $end-of-large-screen) {
+@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .navigation {
     width: $navbar-width-lg;
     overflow: hidden;
@@ -155,7 +153,7 @@ export default {
   }
 }
 
-@media screen and (max-width: $end-of-medium-screen) {
+@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .navigation {
     width: $navbar-width-md;
     overflow: hidden;
