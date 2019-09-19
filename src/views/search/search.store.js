@@ -17,7 +17,7 @@ export default {
         return item.title.toLowerCase().includes(searchQuery)
           || item.description.toLowerCase().includes(searchQuery)
           || item.categories.toLowerCase().includes(searchQuery)
-          || item.price.toString().includes(searchQuery);
+          || item.price.toString() === searchQuery;
       });
       commit('setResults', results);
     },

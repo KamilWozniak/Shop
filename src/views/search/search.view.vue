@@ -30,7 +30,9 @@
                       @click.native="goToProduct(product.categories, product.title)"/>
 
       </div>
-      <div class="search__results-counter">
+      <div class="search__results-counter"
+           :class="{'search__results-counter--hide': !resultsNumber}">
+
         {{resultsNumber}} searched results
       </div>
     </div>
@@ -178,6 +180,10 @@ export default {
     letter-spacing: 0.75px;
     color: $black;
     margin-top: 4rem;
+
+    &--hide {
+      display: none;
+    }
   }
 }
 
