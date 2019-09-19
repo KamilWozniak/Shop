@@ -1,6 +1,10 @@
 <template>
   <div class="products">
-    <navigation />
+    <div class="products__navigation">
+      <div class="products__navigation--fixed">
+        <navigation />
+      </div>
+    </div>
     <div class="products__container">
       <div class="container__header">
         <h1 class="container__header__title">products</h1>
@@ -95,6 +99,14 @@ export default {
 .products {
   display: grid;
   grid-template-columns: $navbar-width 1fr;
+
+  &__navigation {
+    &--fixed {
+      position: fixed;
+      top:0;
+      left: 0;
+    }
+  }
 
   &__container {
     background-color: $grey-100;
