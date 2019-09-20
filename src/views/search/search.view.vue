@@ -1,7 +1,7 @@
 <template>
   <div class="search">
-    <div class="search__navigation">
-      <div class="search__navigation--fixed">
+    <div class="search__navigation__wrapper">
+      <div class="search__navigation">
         <navigation />
       </div>
     </div>
@@ -86,11 +86,9 @@ export default {
   grid-template-columns: $navbar-width 1fr;
 
   &__navigation {
-    &--fixed {
       position: fixed;
       top:0;
       left: 0;
-    }
   }
 
   &__content {
