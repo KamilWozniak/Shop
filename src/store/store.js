@@ -4,7 +4,6 @@ import axios         from 'axios';
 // eslint-disable-next-line import/no-cycle
 import productsStore from '../views/products/store/products.store';
 import checkoutStore from '../views/ckeckout/store/checkout.store';
-// eslint-disable-next-line import/no-cycle
 import searchStore   from '../views/search/search.store';
 
 Vue.use(Vuex);

@@ -1,5 +1,4 @@
 // eslint-disable-next-line import/no-cycle
-import store from '../../store/store';
 
 export default {
   state: {
@@ -11,9 +10,9 @@ export default {
     },
   },
   actions: {
-    searchForProducts({ commit }, searchQuery) {
+    searchForProducts({ commit, rootState }, searchQuery) {
       // eslint-disable-next-line arrow-body-style
-      const results = store.state.products.filter((item) => {
+      const results = rootState.products.filter((item) => {
         return item.title.toLowerCase().includes(searchQuery)
           || item.description.toLowerCase().includes(searchQuery)
           || item.categories.toLowerCase().includes(searchQuery)
