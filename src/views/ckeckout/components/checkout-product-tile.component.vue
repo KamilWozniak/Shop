@@ -30,7 +30,7 @@
         {{product.amount}}
         <span class="item__quantity__increase"
               @click.stop="increaseAmount(product.id)"
-              :class="{ 'item__quantity__increase--hidden'
+              :class="{ 'hide'
                :product.amount === product.quantity }">
 
           <span>+</span>
@@ -135,10 +135,6 @@ export default {
             background-color: $grey-200;
             border-radius: 1rem;
           }
-
-          &--hidden {
-            display: none;
-          }
         }
       }
 
@@ -178,5 +174,8 @@ export default {
       }
     }
   }
+}
+.hide {
+  display: none;
 }
 </style>

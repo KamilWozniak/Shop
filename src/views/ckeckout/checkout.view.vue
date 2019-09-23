@@ -1,6 +1,10 @@
 <template>
   <div class="checkout">
-    <navigation />
+    <div class="checkout__navigation">
+      <div class="checkout__navigation--fixed">
+        <navigation />
+      </div>
+    </div>
     <div class="checkout__content">
       <div v-if="!isCartEmpty"
            class="content__cart-items">
@@ -64,6 +68,14 @@ export default {
   .checkout {
     display: grid;
     grid-template-columns: $navbar-width 1fr;
+
+    &__navigation {
+      &--fixed {
+        position: fixed;
+        top:0;
+        left: 0;
+      }
+    }
 
     &__content {
       padding: 8rem;

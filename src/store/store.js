@@ -1,9 +1,10 @@
 import Vue           from 'vue';
 import Vuex          from 'vuex';
-import axios         from 'axios';
 // eslint-disable-next-line import/no-cycle
-import productsStore from '../views/products/store/products.store';
-import checkoutStore from '../views/ckeckout/store/checkout.store';
+import productsStore                      from '../views/products/store/products.store';
+import checkoutStore                      from '../views/ckeckout/store/checkout.store';
+import searchStore                        from '../views/search/search.store';
+import { fetchProducts, fetchCategories } from '@/services/api.services';
 
 Vue.use(Vuex);
 
@@ -11,10 +12,9 @@ export default new Vuex.Store({
   modules: {
     checkoutStore,
     productsStore,
+    searchStore,
   },
   state: {
-    CATEGORIES_CDN_URL: 'https://api.myjson.com/bins/oqr65',
-    PRODUCTS_CDN_URL: 'https://api.myjson.com/bins/10eus5',
     categories: [],
     products: [],
   },
@@ -26,12 +26,12 @@ export default new Vuex.Store({
   },
   actions: {
     async fetchCategories({ commit }) {
-      await axios.get(this.state.CATEGORIES_CDN_URL)
+      await fetchCategories()
         .then(response => commit('setCategories', response.data.categories))
         .catch(e => console.log(e));
     },
     async fetchProducts({ commit }) {
-      await axios.get(this.state.PRODUCTS_CDN_URL)
+      await fetchProducts()
         .then(response => commit('setProducts', response.data.products))
         .catch(e => console.log(e));
     },

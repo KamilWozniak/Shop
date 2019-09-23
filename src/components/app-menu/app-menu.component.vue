@@ -107,7 +107,7 @@ export default {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 18rem;
+    padding-right: 13rem;
     text-align: right;
     text-transform: uppercase;
     letter-spacing: 4.5px;
