@@ -29,7 +29,8 @@
             :class="{'product-tile__btn--disabled product-tile__btn--black': product.quantity === 0,
                      'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
 
-      {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}
+<!--      {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}-->
+      {{getButtonText()}}
     </button>
     <span class="product-tile__info">{{inCart ? `In Cart: ${howManyInCart}` : ''}}</span>
   </div>
@@ -76,6 +77,18 @@ export default {
       }
       return true;
     },
+    getButtonText() {
+      if (this.product.quantity > 0 && this.checkIfCanOrderMore()) {
+        return 'add to cart';
+      }
+      if (this.product.quantity <= 0) {
+        return 'out of stock';
+      }
+      if (this.product.quantity > 0 && !this.checkIfCanOrderMore()) {
+        return 'all in cart';
+      }
+      return 'add to cart';
+    },
   },
 };
 </script>
@@ -90,13 +103,12 @@ export default {
   cursor: pointer;
   padding: 1rem;
 
-  &:hover {
-    box-shadow: 2.5rem 2.5rem 2.5rem 0 $box-shadow-color;
-  }
-
   &__wrapper {
     position: relative;
     overflow: hidden;
+    &:hover {
+      box-shadow: 2.5rem 2.5rem 2.5rem 0 $box-shadow-color;
+    }
   }
 
   &__btn {
@@ -116,8 +128,9 @@ export default {
     }
 
     &--disabled {
-      background-color: lighten($primary, 30);
+      background-color: darkred;
       cursor: unset;
+      color: $black;
     }
   }
 
