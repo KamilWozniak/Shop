@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import * as firebase from 'firebase';
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import ProductTile from './components/checkout-product-tile.component.vue';
 
@@ -60,6 +61,13 @@ export default {
       });
       return total;
     },
+  },
+  beforeRouteEnter(to, from, next) {
+    if (firebase.auth().currentUser !== null) {
+      next();
+    } else {
+      next('/sign-in');
+    }
   },
 };
 </script>

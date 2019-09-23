@@ -34,11 +34,31 @@
                 :prop-class="currentPath === '/search' ? 'navigation__link--active' : ''" />
 
     </router-link>
+
+    <router-link to="/sign-in"
+                 class="router-link navigation__link">
+
+      SIGN IN
+
+    </router-link>
+    <div @click="signOut">
+      <router-link to="/"
+                   class="router-link navigation__link">
+
+        SIGN OUT
+
+      </router-link>
+    </div>
+    <br>
+    <br>
+    <br>
+    <p @click="logUser">loguj usera</p>
   </div>
 </template>
 
 <script>
-import AppIcon from '../app-icon/app-icon.component.vue';
+import * as firebase from 'firebase';
+import AppIcon       from '../app-icon/app-icon.component.vue';
 
 export default {
   name: 'navigation',
@@ -57,6 +77,15 @@ export default {
         numberOfItems += parseFloat(item.amount);
       });
       return numberOfItems;
+    },
+  },
+  methods: {
+    signOut() {
+      this.$store.dispatch('signUserOff');
+      console.log('wylogowano');
+    },
+    logUser() {
+      console.log(firebase.auth().currentUser);
     },
   },
 };
