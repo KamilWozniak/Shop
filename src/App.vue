@@ -7,6 +7,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+import * as firebase from 'firebase';
 import LoginStatus from './components/login-status/login-status.component.vue';
 
 export default {
@@ -20,6 +21,7 @@ export default {
   created() {
     this.fetchCategories();
     this.fetchProducts();
+    this.$store.commit('setIsLogged', firebase.auth().currentUser !== null);
   },
 };
 </script>

@@ -35,30 +35,29 @@
 
     </router-link>
 
-    <router-link to="/sign-in"
+    <router-link v-if="!this.$store.state.loginStore.isLogged"
+                 to="/sign-in"
                  class="router-link navigation__link">
 
-      SIGN IN
+      <app-icon icon="login"
+                :prop-class="currentPath === '/sign-in' ? 'navigation__link--active' : ''" />
 
     </router-link>
-    <div @click="signOut">
-      <router-link to="/"
-                   class="router-link navigation__link">
 
-        SIGN OUT
+    <div v-else @click="signOut" class="navigation__link">
+      <router-link to="/"
+                   class="router-link">
+
+            <app-icon icon="logout"
+                      prop-class="navigation__link__login-item" />
 
       </router-link>
     </div>
-    <br>
-    <br>
-    <br>
-    <p @click="logUser">loguj usera</p>
   </div>
 </template>
 
 <script>
-import * as firebase from 'firebase';
-import AppIcon       from '../app-icon/app-icon.component.vue';
+import AppIcon from '../app-icon/app-icon.component.vue';
 
 export default {
   name: 'navigation',
@@ -82,10 +81,6 @@ export default {
   methods: {
     signOut() {
       this.$store.dispatch('signUserOff');
-      console.log('wylogowano');
-    },
-    logUser() {
-      console.log(firebase.auth().currentUser);
     },
   },
 };
@@ -125,6 +120,14 @@ export default {
     align-self: center;
     margin: 5rem 0;
 
+    &__login-item {
+      height: 2.8rem;
+
+      &:hover {
+        fill: $primary;
+      }
+    }
+
     &--position-relative {
       position: relative;
     }
@@ -161,6 +164,10 @@ export default {
       }
     }
   }
+  .active {
+    color: $primary;
+  }
+
 }
 
 @media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {

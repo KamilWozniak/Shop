@@ -3,9 +3,7 @@
     <div class="sign-up">
       <form @submit.prevent="signUser" @input="checkPasswordEquality">
         <label class="sign-up__label">Mail: </label>
-        <input id="email"
-               name="Email"
-               placeholder="Enter an email"
+        <input placeholder="Enter an email"
                v-model="email"
                type="email"
                class="sign-up__input"
@@ -14,9 +12,7 @@
         <br>
         <br>
         <label class="sign-up__label">Password: </label>
-        <input id="password"
-               name="Password"
-               placeholder="Enter a password"
+        <input placeholder="Enter a password"
                v-model="password"
                type="password"
                class="sign-up__input"
@@ -24,9 +20,7 @@
         <br>
         <br>
         <label class="sign-up__label">Confirm Password: </label>
-        <input id="confirmPassword"
-               name="Confirm Password"
-               placeholder="Confirm the password"
+        <input placeholder="Confirm the password"
                v-model="confirmPassword"
                type="password"
                class="sign-up__input"
