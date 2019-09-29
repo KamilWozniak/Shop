@@ -20,6 +20,7 @@
       </div>
     </div>
     <app-menu />
+    <login-status />
   </div>
 </template>
 
@@ -27,6 +28,7 @@
 import Navigation   from '../../components/navigation/navigation.component.vue';
 import CustomButton from '../../components/custom-button/custom-button.component.vue';
 import AppMenu      from '../../components/app-menu/app-menu.component.vue';
+import LoginStatus  from '../../components/login-status/login-status.component.vue';
 
 export default {
   name: 'home',
@@ -34,6 +36,7 @@ export default {
     Navigation,
     CustomButton,
     AppMenu,
+    LoginStatus,
   },
   methods: {
     onMoreButtonClick() {
@@ -84,23 +87,31 @@ export default {
         top: -5rem;
         right: -50rem;
         z-index: 0;
+        user-select: none;
       }
 
       &__brand {
         font-weight: 200;
         font-size: 22rem;
         letter-spacing: 5.5px;
+        user-select: none;
       }
 
       &__description {
         font-weight: 300;
         letter-spacing: 0.9px;
         font-size: 3.6rem;
+        user-select: none;
+
       }
 
       &__button {
         margin-top: 5rem;
-        width: 25rem
+        width: 25rem;
+        user-select: none;
+        &:focus {
+          outline: none;
+        }
       }
     }
   }

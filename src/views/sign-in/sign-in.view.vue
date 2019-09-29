@@ -4,7 +4,9 @@
       <navigation />
     </div>
     <div class="sign-in__form-wrapper">
-      <form @submit.prevent="signIn" class="sign-in__form">
+      <form @submit.prevent="signIn"
+            class="sign-in__form">
+
         <label class="sign-in__label">Mail: </label>
         <input placeholder="Enter an email"
                v-model="email"
@@ -18,20 +20,20 @@
                type="password"
                class="sign-in__input"
                autocomplete="off">
-        <button class="sign-in__btn" type="submit">Sign in</button>
+
+        <button class="sign-in__btn"
+                type="submit">
+
+          Sign in
+        </button>
       </form>
     </div>
-    <div>
-      <br>
-      <br>
-      <br>
-      <router-link to="/sign-up" class="sign-in__link">
-        You don't have account yet? Create one!
-      </router-link>
-    </div>
-    <div>
-      <p class="sign-in__error-message">{{errorMsg}}</p>
-    </div>
+    <router-link to="/sign-up"
+                 class="sign-in__link">
+
+      You don't have account yet? Create one!
+    </router-link>
+    <p class="sign-in__error-message">{{errorMsg}}</p>
   </div>
 </template>
 
@@ -101,7 +103,7 @@ export default {
     border-left: none;
     border-right: none;
     border-bottom: 1px black solid;
-    margin-bottom: 2rem;
+    margin-bottom: 5rem;
     background-color: transparent;
     &:focus {
       outline: none;
@@ -124,6 +126,7 @@ export default {
     font-size: 5rem;
     color: $black;
     text-decoration: none;
+    margin-top: 6rem;
 
     &:hover {
       color: $primary;

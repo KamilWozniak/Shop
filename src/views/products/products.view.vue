@@ -15,7 +15,7 @@
       <div v-if="categoryProducts.length === 0"
            class="container__no-results">
 
-        <h2>brak dostępnych przedmiotów w sklepie</h2>
+        <h2>no products in this category</h2>
       </div>
       <div v-else
            class="container__product-list">
@@ -36,6 +36,7 @@
       </div>
     </div>
     <app-menu />
+    <login-status />
   </div>
 </template>
 
@@ -43,7 +44,9 @@
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import AppMenu     from '../../components/app-menu/app-menu.component.vue';
 import ProductTile from './components/product-tile.component.vue';
+// eslint-disable-next-line import/no-cycle
 import store       from '../../store/store';
+import LoginStatus from '../../components/login-status/login-status.component.vue';
 
 export default {
   name: 'products',
@@ -51,6 +54,7 @@ export default {
     Navigation,
     AppMenu,
     ProductTile,
+    LoginStatus,
   },
   data() {
     return {
@@ -179,7 +183,7 @@ export default {
           color: $black;
           text-transform: uppercase;
           font-weight: bolder;
-          font-size: 15rem;
+          font-size: 8rem;
           opacity: 0.3;
           padding-bottom: 10rem;
           text-align: center;

@@ -154,7 +154,10 @@ export default {
       }
 
       &__description {
+        padding-top: 5rem;
         padding-left: 2rem;
+        height: 100%;
+        overflow-y: hidden;
 
         &__title {
           font-size: 3rem;

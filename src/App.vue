@@ -1,20 +1,15 @@
 <template>
   <div class="app">
     <router-view :key="this.$route.fullPath"/>
-    <login-status />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import * as firebase from 'firebase';
-import LoginStatus from './components/login-status/login-status.component.vue';
 
 export default {
   name: 'App',
-  components: {
-    LoginStatus,
-  },
   methods: {
     ...mapActions(['fetchCategories', 'fetchProducts']),
   },

@@ -29,8 +29,9 @@
 
         <p class="content__empty-cart__message">Your cart is empty</p>
       </div>
-      <p class="content__form">content form placeholder</p>
+      <p class="content__form"> </p>
     </div>
+    <login-status />
   </div>
 </template>
 
@@ -38,12 +39,14 @@
 import * as firebase from 'firebase';
 import Navigation  from '../../components/navigation/navigation.component.vue';
 import ProductTile from './components/checkout-product-tile.component.vue';
+import LoginStatus from '../../components/login-status/login-status.component.vue';
 
 export default {
   name: 'checkout',
   components: {
     Navigation,
     ProductTile,
+    LoginStatus,
   },
   computed: {
     cart() {
@@ -136,8 +139,13 @@ export default {
       }
 
       &__empty-cart__message {
-        font-size: 7rem;
-        color: $grey-300;
+        color: $black;
+        text-transform: uppercase;
+        font-weight: bolder;
+        font-size: 8rem;
+        opacity: 0.3;
+        padding-bottom: 10rem;
+        text-align: center;
       }
     }
   }

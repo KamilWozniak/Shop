@@ -37,6 +37,7 @@
       </div>
     </div>
     <app-menu />
+    <login-status />
   </div>
 </template>
 
@@ -44,6 +45,7 @@
 import Navigation   from '../../components/navigation/navigation.component.vue';
 import AppMenu      from '../../components/app-menu/app-menu.component.vue';
 import ProductTile  from '../products/components/product-tile.component.vue';
+import LoginStatus  from '../../components/login-status/login-status.component.vue';
 
 export default {
   name: 'search',
@@ -51,6 +53,7 @@ export default {
     Navigation,
     AppMenu,
     ProductTile,
+    LoginStatus,
   },
   data() {
     return {

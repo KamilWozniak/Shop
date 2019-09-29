@@ -1,6 +1,6 @@
 <template>
   <p class="login-status">
-    {{this.$store.state.loginStore.isLogged ? `logged as: ${userEmail}` : ''}}
+    {{this.$store.state.loginStore.isLogged ? `Logged as: ${userEmail}` : ''}}
   </p>
 </template>
 
@@ -23,7 +23,8 @@ export default {
 <style scoped lang="scss">
 .login-status {
   position: fixed;
-  top: 1rem;
-  right: 1rem;
+  top: 3rem;
+  right: 3rem;
+  color: $grey-400;
 }
 </style>
