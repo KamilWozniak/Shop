@@ -35,6 +35,11 @@
 
         {{resultsNumber}} searched results
       </div>
+      <div class="search__no-results"
+           :class="{'search__no-results--show': (resultsNumber === 0 && alreadySearched)}">
+
+        there is no such product in our store
+      </div>
     </div>
     <app-menu />
     <login-status />
@@ -58,6 +63,7 @@ export default {
   data() {
     return {
       searchValue: '',
+      alreadySearched: false,
     };
   },
   computed: {
@@ -68,10 +74,12 @@ export default {
   methods: {
     search() {
       this.$store.dispatch('searchForProducts', this.searchValue.toLowerCase().trim());
+      this.alreadySearched = true;
     },
     clearSearch() {
       this.searchValue = '';
       this.$store.commit('setResults', []);
+      this.alreadySearched = false;
     },
     goToProduct(category, title) {
       this.$router.push({ path: `/products/${category}/${title}` });
@@ -87,6 +95,22 @@ export default {
 .search {
   display: grid;
   grid-template-columns: $navbar-width 1fr;
+
+  &__no-results {
+    display: none;
+    color: $black;
+    text-transform: uppercase;
+    font-weight: bolder;
+    font-size: 5rem;
+    opacity: 0.3;
+    padding-bottom: 10rem;
+    text-align: center;
+
+    &--show {
+      display: block;
+    }
+
+  }
 
   &__navigation {
       position: fixed;

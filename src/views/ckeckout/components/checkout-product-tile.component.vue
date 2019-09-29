@@ -83,6 +83,10 @@ export default {
   background-color: $white;
   cursor: pointer;
 
+  &:hover {
+    box-shadow: 1rem 1rem 1rem 0 $box-shadow-color;
+  }
+
   &__close-btn {
     position: absolute;
     top: 0;
@@ -106,19 +110,23 @@ export default {
     .item {
       &__quantity {
         font-size: 2.5rem;
+        padding-right: 5px;
+        padding-left: 5px;
 
         &__decrease > span {
           margin-right: 1rem;
           font-size: 2.5rem;
           cursor: pointer;
-          width: 1.5rem;
+          width: 3rem;
           display: flex;
           align-items: center;
           justify-content: center;
+          user-select: none;
+          height: 3rem;
+          border: 1px $grey-400 solid;
 
           &:hover {
             background-color: $grey-200;
-            border-radius: 1rem;
           }
         }
 
@@ -126,14 +134,16 @@ export default {
           margin-left: 1rem;
           font-size: 2.5rem;
           cursor: pointer;
-          width: 2rem;
+          width: 3rem;
           display: flex;
           align-items: center;
           justify-content: center;
+          user-select: none;
+          height: 3rem;
+          border: 1px $grey-400 solid;
 
           &:hover {
             background-color: $grey-200;
-            border-radius: 1rem;
           }
         }
       }

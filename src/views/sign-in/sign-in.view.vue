@@ -31,7 +31,7 @@
     <router-link to="/sign-up"
                  class="sign-in__link">
 
-      You don't have account yet? Create one!
+      You don't have an account yet? Create one!
     </router-link>
     <p class="sign-in__error-message">{{errorMsg}}</p>
   </div>
@@ -136,6 +136,7 @@ export default {
   &__error-message {
     font-size: 5rem;
     color: red;
+    margin-top: 1rem;
   }
 }
 

@@ -29,7 +29,6 @@
             :class="{'product-tile__btn--disabled product-tile__btn--black': product.quantity === 0,
                      'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
 
-<!--      {{product.quantity > 0 ? 'add to cart' : 'out of stock'}}-->
       {{getButtonText()}}
     </button>
     <span class="product-tile__info">{{inCart ? `In Cart: ${howManyInCart}` : ''}}</span>
@@ -107,7 +106,7 @@ export default {
     position: relative;
     overflow: hidden;
     &:hover {
-      box-shadow: 2.5rem 2.5rem 2.5rem 0 $box-shadow-color;
+      box-shadow: 1rem 1rem 1rem 0 $box-shadow-color;
     }
   }
 
@@ -128,9 +127,9 @@ export default {
     }
 
     &--disabled {
-      background-color: darkred;
+      background-color: lighten(darkred, 8);
       cursor: unset;
-      color: $black;
+      color: $white;
     }
   }
 

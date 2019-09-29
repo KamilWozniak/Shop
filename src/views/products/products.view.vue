@@ -165,6 +165,10 @@ export default {
         cursor: pointer;
         color: $primary;
 
+        &:focus {
+          outline: none;
+        }
+
         &:hover {
           text-decoration: underline;
         }

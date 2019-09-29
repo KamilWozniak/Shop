@@ -78,7 +78,7 @@ export default {
         });
       } else {
         this.$store.commit('setErrorMsg',
-          'Provided password is too short or confirmed password is not identical with original one.');
+          'Provided data is not correct.');
       }
     },
   },
@@ -147,6 +147,7 @@ export default {
   &__error-message {
     font-size: 5rem;
     color: red;
+    margin-top: 2rem;
   }
 
   .warning-message {
