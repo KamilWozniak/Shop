@@ -92,8 +92,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-items: start;
-  width: $navbar-width;
-  height: 100vh;
+//  width: $navbar-width;
+  /*height: 100vh;*/
   background-color: $white;
 
   &__logo {
@@ -143,11 +143,11 @@ export default {
       &__wrapper {
         position: absolute;
         top: -2rem;
-        right: -2.9rem;
+        right: -2rem;
         border: 1px $primary solid;
         border-radius: 2rem;
-        width: 3rem;
-        height: 3rem;
+        width: 2.7rem;
+        height: 2.7rem;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -170,6 +170,7 @@ export default {
 
 }
 
+/*
 @media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .navigation {
     width: $navbar-width-lg;
@@ -228,5 +229,5 @@ export default {
       }
     }
   }
-}
+} */
 </style>

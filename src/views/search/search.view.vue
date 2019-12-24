@@ -1,24 +1,23 @@
 <template>
   <div class="search">
-    <div class="search__navigation__wrapper">
-      <div class="search__navigation">
-        <navigation />
-      </div>
-    </div>
     <div class="search__content">
       <form @submit.prevent="search"
             class="search__form">
 
-        <input class="search__form__input"
-               type="text"
-               v-model="searchValue">
+        <div class="search__form__wrapper">
 
-        <button type="button"
-                class="search__form__button"
-                @click="clearSearch">
+          <input class="search__form__input"
+                 spellcheck="false"
+                 type="text"
+                 v-model="searchValue">
 
-          &#215;
-        </button>
+          <button type="button"
+                  class="search__form__button"
+                  @click="clearSearch">
+
+            &#215;
+          </button>
+        </div>
         <div class="search__form__info">
           Type product that you are looking for
         </div>
@@ -27,7 +26,7 @@
         <product-tile v-for="product in this.$store.state.searchStore.searchResults"
                       :product="product"
                       :key="product.id"
-                      @click.native="goToProduct(product.categories, product.title)"/>
+                      @click.native="goToProduct(product.categories, product.title)" />
 
       </div>
       <div class="search__results-counter"
@@ -41,24 +40,16 @@
         there is no such product in our store
       </div>
     </div>
-    <app-menu />
-    <login-status />
   </div>
 </template>
 
 <script>
-import Navigation   from '../../components/navigation/navigation.component.vue';
-import AppMenu      from '../../components/app-menu/app-menu.component.vue';
-import ProductTile  from '../products/components/product-tile.component.vue';
-import LoginStatus  from '../../components/login-status/login-status.component.vue';
+import ProductTile from '@/components/s-product-tile/s-product-tile.component.vue';
 
 export default {
   name: 'search',
   components: {
-    Navigation,
-    AppMenu,
     ProductTile,
-    LoginStatus,
   },
   data() {
     return {
@@ -93,8 +84,7 @@ export default {
 
 <style scoped lang="scss">
 .search {
-  display: grid;
-  grid-template-columns: $navbar-width 1fr;
+  min-height: 100vh;
 
   &__no-results {
     display: none;
@@ -112,14 +102,9 @@ export default {
 
   }
 
-  &__navigation {
-      position: fixed;
-      top:0;
-      left: 0;
-  }
-
   &__content {
-    padding: 25rem 37rem 29rem 20rem;
+    min-height: 100vh;
+    padding: 25rem 20rem 20rem 20rem;
     width: 100%;
     height: 100%;
     display: flex;
@@ -129,28 +114,37 @@ export default {
       content: '';
       background: url("../../assets/img/photo-1449247709967-d4461a6a6103.png");
       background-size: cover;
-      opacity: 0.3;
+      background-position-x: center;
+      background-position-y: center;
+      opacity: 0.5;
       top: 0;
       left: 0;
       bottom: 0;
       right: 0;
       position: fixed;
       z-index: -1;
-      margin-left: $navbar-width;
     }
   }
 
   &__form {
-    position: relative;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: space-between;
     height: fit-content;
     margin-bottom: 20rem;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 100rem;
+
+    &__wrapper {
+      position: relative;
+    }
+
 
     &__input {
       height: 17rem;
-      width: 150rem;
+      width: 100%;
       border: none;
       font-size: 14rem;
       text-transform: uppercase;
@@ -158,6 +152,7 @@ export default {
       color: $black;
       letter-spacing: 3.5px;
       background-color: transparent;
+      padding-right: 10rem;
 
       &:focus {
         outline: none;
@@ -165,6 +160,9 @@ export default {
     }
 
     &__button {
+      position: absolute;
+      right: 2rem;
+      bottom: 3.5rem;
       background-color: transparent;
       border: none;
       font-size: 10rem;
@@ -179,11 +177,8 @@ export default {
     }
 
     &__info {
-      position: absolute;
       width: 100%;
-      bottom:-8rem;
       border-top: 1px solid $grey-300;
-      margin-top: 11rem;
       font-size: 3.6rem;
       color: $grey-300;
       letter-spacing: 0.9px;
@@ -194,8 +189,8 @@ export default {
 
   &__item-list {
     display: grid;
-    grid-auto-rows: 45rem;
-    grid-template-columns: repeat(3, 45rem);
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(auto-fill, minmax(35rem, 1fr));
     grid-gap: 5rem;
   }
 

@@ -1,7 +1,7 @@
 <template>
   <div class="sign-up__wrapper">
     <div class="sign-up__navigation">
-      <navigation />
+<!--      <navigation />-->
     </div>
     <div class="sign-up">
       <form @submit.prevent="signUser" @input="checkPasswordEquality" class="sign-up__form">
@@ -43,12 +43,10 @@
 </template>
 
 <script>
-import Navigation from '../../components/navigation/navigation.component.vue';
 
 export default {
   name: 'login',
   components: {
-    Navigation,
   },
   data() {
     return {

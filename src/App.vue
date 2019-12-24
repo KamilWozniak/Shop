@@ -1,15 +1,26 @@
 <template>
   <div class="app">
-    <router-view :key="this.$route.fullPath"/>
+    <navigation />
+    <router-view :key="this.$route.fullPath" />
+    <app-menu />
+    <login-status />
   </div>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
-import * as firebase from 'firebase';
+import * as firebase  from 'firebase';
+import navigation     from '@/components/navigation/navigation.component.vue';
+import appMenu        from '@/components/app-menu/app-menu.component.vue';
+import loginStatus    from '@/components/login-status/login-status.component.vue';
 
 export default {
   name: 'App',
+  components: {
+    appMenu,
+    navigation,
+    loginStatus,
+  },
   methods: {
     ...mapActions(['fetchCategories', 'fetchProducts']),
   },
@@ -23,8 +34,16 @@ export default {
 
 <style lang="scss">
 
+.app {
+  width: auto;
+  display: grid;
+  grid-template-columns: 7.7rem auto;
+  grid-template-rows: auto;
+  position: relative;
+}
+
 html {
-  font-size: 10px;
+  font-size: 0.9vmin;
 }
 
 * {

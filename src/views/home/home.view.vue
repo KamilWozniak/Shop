@@ -1,42 +1,26 @@
 <template>
   <div class="home">
-    <navigation />
-    <div class="home__content">
-      <div class="home__content__header-wrapper">
-        <div class="home__content__header">
-          <div class="home__content__header--high-z-index">
-            <h1 class="home__content__header__brand">olios</h1>
-            <h3 class="home__content__header__description">
-              newest forniture shop template
-            </h3>
-            <custom-button class="home__content__header__button"
-                           @click.native="onMoreButtonClick">
+    <div class="home__header">
+      <h1 class="header__brand">olios</h1>
+      <h3 class="header__description">
+        newest furniture shop
+      </h3>
+      <s-button class="header__button"
+                @click.native="onMoreButtonClick">
 
-              view more
-            </custom-button>
-          </div>
-          <span class="home__content__header__background">newest</span>
-        </div>
-      </div>
+        view more
+      </s-button>
     </div>
-    <app-menu />
-    <login-status />
   </div>
 </template>
 
 <script>
-import Navigation   from '../../components/navigation/navigation.component.vue';
-import CustomButton from '../../components/custom-button/custom-button.component.vue';
-import AppMenu      from '../../components/app-menu/app-menu.component.vue';
-import LoginStatus  from '../../components/login-status/login-status.component.vue';
+import SButton from '@/components/s-button/s-button.component.vue';
 
 export default {
   name: 'home',
   components: {
-    Navigation,
-    CustomButton,
-    AppMenu,
-    LoginStatus,
+    SButton,
   },
   methods: {
     onMoreButtonClick() {
@@ -46,77 +30,65 @@ export default {
 };
 </script>
 
-<style scoped lang="scss">
+<style scoped
+       lang="scss">
 
 .home {
-  display: grid;
-  grid-template-columns: $navbar-width 1fr;
+  height: 100vh;
 
-  &__content {
-    background: no-repeat url("../../assets/img/photo-1449247709967-d4461a6a6103.png");
-    width: 100%;
-    height: 100%;
+  &::after {
+    content: '';
+    background: url("../../assets/img/photo-1449247709967-d4461a6a6103.png");
     background-size: cover;
-    overflow: hidden;
+    background-position-x: center;
+    background-position-y: center;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: fixed;
+    z-index: -1;
+  }
 
-    &__header-wrapper {
-      position: relative;
-      text-transform: uppercase;
-      margin-top: 8rem;
-      text-align: center;
-      display: flex;
-      justify-content: center;
+  &__header {
+    text-transform: uppercase;
+    margin-top: 8rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .header {
+
+    &__brand {
+      font-weight: 200;
+      font-size: 22rem;
+      letter-spacing: 5.5px;
+      user-select: none;
     }
 
-    &__header {
-      position: relative;
+    &__description {
+      font-weight: 300;
+      letter-spacing: 0.9px;
+      font-size: 3.6rem;
+      user-select: none;
+    }
 
-      &--high-z-index {
-        position: relative;
-        z-index: 2;
-      }
+    &__button {
+      margin-top: 5rem;
+      width: 25rem;
+      user-select: none;
 
-      &__background {
-        font-weight: 900;
-        opacity: 0.7;
-        font-size: 40rem;
-        letter-spacing: 1rem;
-        color: $grey-200;
-        text-transform: uppercase;
-        position: absolute;
-        top: -5rem;
-        right: -50rem;
-        z-index: 0;
-        user-select: none;
-      }
-
-      &__brand {
-        font-weight: 200;
-        font-size: 22rem;
-        letter-spacing: 5.5px;
-        user-select: none;
-      }
-
-      &__description {
-        font-weight: 300;
-        letter-spacing: 0.9px;
-        font-size: 3.6rem;
-        user-select: none;
-
-      }
-
-      &__button {
-        margin-top: 5rem;
-        width: 25rem;
-        user-select: none;
-        &:focus {
-          outline: none;
-        }
+      &:focus {
+        outline: none;
       }
     }
   }
 }
 
+/*
 @media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
   .home {
     grid-template-columns: $navbar-width-lg 1fr;
@@ -230,5 +202,5 @@ export default {
       }
     }
   }
-}
+} */
 </style>

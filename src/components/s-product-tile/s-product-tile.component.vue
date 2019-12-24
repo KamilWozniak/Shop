@@ -26,8 +26,9 @@
     </div>
     <button @click.stop="addToCart"
             class="product-tile__btn"
-            :class="{'product-tile__btn--disabled product-tile__btn--black': product.quantity === 0,
-                     'product-tile__btn--disabled' : !checkIfCanOrderMore()}">
+            :class="{'product-tile__btn--disabled': product.quantity === 0
+             || !checkIfCanOrderMore()}">
+
 
       {{getButtonText()}}
     </button>
@@ -37,7 +38,7 @@
 
 <script>
 export default {
-  name: 'product-tile',
+  name: 's-product-tile',
   props: {
     product: {
       type: Object,
@@ -96,9 +97,12 @@ export default {
 
 .product-tile {
   background-color: $white;
+  max-height: 45rem;
+  height: 45rem;
   display: grid;
   grid-template-columns: 100%;
-  grid-template-rows: 28rem 15rem;
+  /*grid-template-rows: 28rem 15rem;*/
+  grid-template-rows: 4fr 1fr;
   cursor: pointer;
   padding: 1rem;
 
@@ -122,14 +126,26 @@ export default {
     padding: 1rem;
     cursor: pointer;
 
-    &--black {
-      color: $black;
+    &:hover {
+      background-color: darken($primary, 20);
+    }
+
+    &:focus {
+      outline: none;
     }
 
     &--disabled {
       background-color: lighten(darkred, 8);
       cursor: unset;
       color: $white;
+
+      &:hover {
+        background-color: lighten(darkred, 8);
+      }
+
+      &:focus {
+        outline: none;
+      }
     }
   }
 
@@ -172,6 +188,7 @@ export default {
 
       &__content {
         margin-top: 1rem;
+        margin-bottom: 2rem;
         color: $grey-400;
         letter-spacing: 4.5px;
         font-weight: 300;
@@ -184,16 +201,17 @@ export default {
       }
 
       &__price {
-        margin-top: 2rem;
+        /*margin-top: 2rem;*/
         color: $primary;
         font-weight: bold;
         letter-spacing: 4.5px;
+        margin-bottom: 2rem;
       }
     }
   }
 }
 
-
+/*
 @media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
   .product-tile {
     &__description {
@@ -217,5 +235,5 @@ export default {
     }
   }
 }
-
+*/
 </style>

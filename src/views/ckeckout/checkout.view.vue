@@ -2,7 +2,7 @@
   <div class="checkout">
     <div class="checkout__navigation">
       <div class="checkout__navigation--fixed">
-        <navigation />
+<!--        <navigation />-->
       </div>
     </div>
     <div class="checkout__content">
@@ -37,14 +37,12 @@
 
 <script>
 import * as firebase from 'firebase';
-import Navigation  from '../../components/navigation/navigation.component.vue';
 import ProductTile from './components/checkout-product-tile.component.vue';
 import LoginStatus from '../../components/login-status/login-status.component.vue';
 
 export default {
   name: 'checkout',
   components: {
-    Navigation,
     ProductTile,
     LoginStatus,
   },

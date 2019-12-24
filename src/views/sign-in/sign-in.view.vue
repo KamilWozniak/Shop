@@ -1,8 +1,5 @@
 <template>
   <div class="sign-in">
-    <div class="sign-in__navigation">
-      <navigation />
-    </div>
     <div class="sign-in__form-wrapper">
       <form @submit.prevent="signIn"
             class="sign-in__form">
@@ -38,13 +35,10 @@
 </template>
 
 <script>
-import Navigation from '@/components/navigation/navigation.component.vue';
 
 export default {
   name: 'sign-in.view',
-  components: {
-    Navigation,
-  },
+  components: {},
   data() {
     return {
       email: '',
@@ -78,7 +72,7 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: $grey-200;
+  background-color: $grey-100;
 
   &__navigation {
     position: fixed;
@@ -105,6 +99,7 @@ export default {
     border-bottom: 1px black solid;
     margin-bottom: 5rem;
     background-color: transparent;
+
     &:focus {
       outline: none;
     }
@@ -117,6 +112,7 @@ export default {
     cursor: pointer;
     background-color: $primary;
     border-radius: 5rem;
+    border: none;
     color: $white;
     padding: 1rem;
     margin-top: 3rem;
@@ -133,6 +129,7 @@ export default {
       text-decoration: underline;
     }
   }
+
   &__error-message {
     font-size: 5rem;
     color: red;
