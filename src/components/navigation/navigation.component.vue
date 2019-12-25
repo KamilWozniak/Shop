@@ -57,6 +57,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import AppIcon from '../app-icon/app-icon.component.vue';
 
 export default {
@@ -66,10 +67,11 @@ export default {
   },
   data() {
     return {
-      currentPath: this.$router.currentRoute.fullPath,
+      // currentPath: this.$router.currentRoute.fullPath,
     };
   },
   computed: {
+    ...mapState(['currentPath']),
     numberOfCartItems() {
       let numberOfItems = 0;
       this.$store.state.checkoutStore.cart.forEach((item) => {

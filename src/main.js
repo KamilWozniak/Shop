@@ -1,8 +1,8 @@
-import Vue           from 'vue';
+import Vue from 'vue';
 import * as firebase from 'firebase';
-import App           from './App.vue';
-import router        from './router';
-import store         from './store/store';
+import App from './App.vue';
+import router from './router';
+import store from './store/store';
 
 Vue.config.productionTip = false;
 
@@ -16,6 +16,11 @@ firebase.initializeApp({
   storageBucket: '',
   messagingSenderId: '1059088625973',
   appId: '1:1059088625973:web:6a35856bf63b4f02c55c7c',
+});
+
+router.beforeEach((to, from, next) => {
+  store.commit('setCurrentPath', to.path);
+  next();
 });
 
 firebase.auth().onAuthStateChanged(() => {

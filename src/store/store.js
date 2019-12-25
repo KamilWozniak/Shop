@@ -19,12 +19,17 @@ export default new Vuex.Store({
   state: {
     categories: [],
     products: [],
+    currentPath: '',
   },
   mutations: {
     // eslint-disable-next-line no-return-assign
     setCategories: (state, newCategories) => (state.categories = newCategories),
     // eslint-disable-next-line no-return-assign
     setProducts: (state, newProducts) => (state.products = newProducts),
+    // eslint-disable-next-line no-return-assign
+    setCurrentPath: (state, path) => {
+      state.currentPath = path;
+    },
   },
   actions: {
     async fetchCategories({ commit }) {

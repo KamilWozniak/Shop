@@ -30,7 +30,6 @@
                    class="app-menu__content__item app-menu__content__item__show-all-link">
 
         <p>show all products</p>
-        <div class="app-menu__content__item--underline"></div>
       </router-link>
     </div>
   </div>
@@ -69,6 +68,7 @@ export default {
   right: -$side-menu-width;
   top: 0;
   width: $side-menu-width;
+  max-width: 50rem;
   background-color: $white;
   z-index: 5;
   transition: all ease-in-out 0.3s;
@@ -101,34 +101,61 @@ export default {
   }
 
   &__content {
+    padding: 0 3rem;
     height: 100vh;
     background-color: $white;
     box-shadow: 0 0 2.5rem 0 $box-shadow-color;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 13rem;
-    text-align: right;
     text-transform: uppercase;
     letter-spacing: 4.5px;
     position: relative;
 
     &__item {
-      margin: 5rem 0;
+      margin: 3rem 0;
       color: $grey-300;
       text-decoration: none;
+      position: relative;
+      width: fit-content;
+      margin-left: auto;
+      margin-right: auto;
+
+      &:after {
+        position: absolute;
+        bottom: -1rem;
+        left: 0;
+        right: 0;
+        content: '';
+        width: 0;
+        height: 0;
+        border: 1px solid $primary;
+        transform: translateX(-100%);
+        opacity: 0;
+
+      }
 
       &__show-all-link {
+        text-align: center;
         position: absolute;
         bottom: 2%;
-        left: 15%;
-        color: $primary;
-        text-decoration: none !important;
+        left: 50%;
+        transform: translateX(-50%);
+
+        &:hover:after {
+          width: 96% !important;
+        }
       }
 
       &:hover {
         color: $primary;
-        text-decoration: underline;
+
+        &:after {
+          opacity: 1;
+          width: 92%;
+          transform: translateX(0%);
+          transition: width .2s ease;
+        }
       }
 
       &--underline {
@@ -145,7 +172,7 @@ export default {
     transform: translateX(-$side-menu-width);
   }
 }
-
+/*
 @media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
 
   .app-menu {
@@ -276,5 +303,5 @@ export default {
     }
   }
 }
-
+*/
 </style>
