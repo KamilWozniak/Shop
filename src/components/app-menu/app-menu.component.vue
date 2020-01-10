@@ -21,13 +21,13 @@
       <router-link :to="`/products/${category.value}`"
                    v-for="category in categories"
                    :key="category.value"
-                   class="app-menu__content__item">
+                   class="content__item">
 
         {{category.value}}
       </router-link>
 
       <router-link to="/products"
-                   class="app-menu__content__item app-menu__content__item__show-all-link">
+                   class="content__item content__item--show-all-link">
 
         <p>show all products</p>
       </router-link>
@@ -112,58 +112,62 @@ export default {
     letter-spacing: 4.5px;
     position: relative;
 
-    &__item {
-      margin: 3rem 0;
-      color: $grey-300;
-      text-decoration: none;
-      position: relative;
-      width: fit-content;
-      margin-left: auto;
-      margin-right: auto;
+    .content {
 
-      &:after {
-        position: absolute;
-        bottom: -1rem;
-        left: 0;
-        right: 0;
-        content: '';
-        width: 0;
-        height: 0;
-        border: 1px solid $primary;
-        transform: translateX(-100%);
-        opacity: 0;
 
-      }
-
-      &__show-all-link {
-        text-align: center;
-        position: absolute;
-        bottom: 2%;
-        left: 50%;
-        transform: translateX(-50%);
-
-        &:hover:after {
-          width: 96% !important;
-        }
-      }
-
-      &:hover {
-        color: $primary;
+      &__item {
+        margin: 3rem 0;
+        color: $grey-300;
+        text-decoration: none;
+        position: relative;
+        width: fit-content;
+        margin-left: auto;
+        margin-right: auto;
 
         &:after {
-          opacity: 1;
-          width: 92%;
-          transform: translateX(0%);
-          transition: width .2s ease;
-        }
-      }
+          position: absolute;
+          bottom: -1rem;
+          left: 0;
+          right: 0;
+          content: '';
+          width: 0;
+          height: 0;
+          border: 1px solid $primary;
+          transform: translateX(-100%);
+          opacity: 0;
 
-      &--underline {
-        margin-left: 5rem;
-        margin-top: 1rem;
-        width: 16rem;
-        height: 1px;
-        border: $primary 1px solid;
+        }
+
+        &--show-all-link {
+          text-align: center;
+          position: absolute;
+          bottom: 2%;
+          left: 50%;
+          transform: translateX(-50%);
+
+          &:hover:after {
+            width: 96% !important;
+          }
+        }
+
+        &:hover {
+          color: $primary;
+
+          &:after {
+            opacity: 1;
+            width: 92%;
+            transform: translateX(1%);
+            transition: width .2s ease;
+          }
+        }
+
+        &--underline {
+          margin-left: 5rem;
+          margin-top: 1rem;
+          width: 16rem;
+          height: 1px;
+          border: $primary 1px solid;
+        }
       }
     }
   }
@@ -172,6 +176,7 @@ export default {
     transform: translateX(-$side-menu-width);
   }
 }
+
 /*
 @media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
 

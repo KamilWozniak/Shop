@@ -3,32 +3,32 @@
     <div class="checkout-product-tile__content"
          @click="goToProduct">
 
-      <div class="content__item">
+      <div class="content__section">
         <img :src="image"
              alt="product"
-             class="item__img">
+             class="content__section--img">
 
       </div>
-      <div class="content__item">
-        <div class="item__description">
-          <h3 class="item__description__title">
+      <div class="content__section">
+        <div class="content__section--description">
+          <h3 class="content__section--description__title">
 
             {{product.title}}
           </h3>
-          <p class="item__description__content">
+          <p class="content__section--description__content">
 
             {{product.description}}
           </p>
         </div>
       </div>
-      <div class="content__item item__quantity">
-        <span class="item__quantity__decrease"
+      <div class="content__section content__section--quantity">
+        <span class="quantity-btn"
               @click.stop="decreaseAmount(product.id)">
 
           <span>-</span>
         </span>
-        {{product.amount}}
-        <span class="item__quantity__increase"
+        <p>{{product.amount}}</p>
+        <span class="quantity-btn"
               @click.stop="increaseAmount(product.id)"
               :class="{ 'hide'
                :product.amount === product.quantity }">
@@ -36,7 +36,7 @@
           <span>+</span>
         </span>
       </div>
-      <p class="content__item item__price">
+      <p class="content__section content__section--price">
 
         {{`$${product.price}`}}
       </p>
@@ -78,10 +78,35 @@ export default {
 
 <style scoped lang="scss">
 
+@mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
+  overflow: hidden;
+  position: relative;
+  line-height: $lineHeight;
+  max-height: $lineHeight * $lineCount;
+  text-align: justify;
+  padding-right: 1.3em;
+  &:before {
+    content: '...';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  &:after {
+    content: '';
+    position: absolute;
+    right: 0;
+    width: 1.3em;
+    height: 1em;
+    margin-top: 0.2em;
+    background: $bgColor;
+  }
+}
+
 .checkout-product-tile {
   position: relative;
   background-color: $white;
   cursor: pointer;
+  max-width: 350rem;
 
   &:hover {
     box-shadow: 1rem 1rem 1rem 0 $box-shadow-color;
@@ -98,40 +123,25 @@ export default {
 
   &__content {
     display: grid;
-    grid-template-columns: 20rem 40rem 10rem 10rem;
+    grid-template-columns: 20rem auto 10rem 15rem;
     height: 100%;
 
-    .content__item {
+    .content__section {
       display: flex;
-      justify-content: center;
       align-items: center;
-    }
+      width: 100%;
 
-    .item {
-      &__quantity {
+      &--quantity {
         font-size: 2.5rem;
-        padding-right: 5px;
-        padding-left: 5px;
+        justify-self: flex-end;
+        width: fit-content;
 
-        &__decrease > span {
-          margin-right: 1rem;
-          font-size: 2.5rem;
-          cursor: pointer;
-          width: 3rem;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          user-select: none;
-          height: 3rem;
-          border: 1px $grey-400 solid;
-
-          &:hover {
-            background-color: $grey-200;
-          }
+        & > p {
+          font-size: 3rem;
+          margin: 0 1rem;
         }
 
-        &__increase > span {
-          margin-left: 1rem;
+        .quantity-btn > span {
           font-size: 2.5rem;
           cursor: pointer;
           width: 3rem;
@@ -148,23 +158,27 @@ export default {
         }
       }
 
-      &__img {
+      &--img {
         max-height: 100%;
         max-width: 100%;
         width: auto;
         height: auto;
       }
 
-      &__price {
+      &--price {
         color: $primary;
         font-weight: bold;
-        letter-spacing: 4.5px;
+        letter-spacing: .45rem;
         font-size: 2.8rem;
-        padding-right: 1rem;
+        padding-right: 3rem;
+        padding-left: 2rem;
+        max-width: fit-content;
+        min-width: auto;
+        justify-self: flex-end;
       }
 
-      &__description {
-        padding-top: 5rem;
+      &--description {
+        padding-top: 4rem;
         padding-left: 2rem;
         height: 100%;
         overflow-y: hidden;
@@ -174,20 +188,21 @@ export default {
           text-transform: uppercase;
           font-weight: 300;
           color: $black;
-          letter-spacing: 0.75px;
+          letter-spacing: .75px;
         }
 
         &__content {
           margin-top: 1rem;
           color: $grey-400;
-          letter-spacing: 4.5px;
+          letter-spacing: .45rem;
           font-weight: 300;
-          max-height: 3rem;
+          @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
         }
       }
     }
   }
 }
+
 .hide {
   display: none;
 }
