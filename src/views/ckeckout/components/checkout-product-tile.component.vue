@@ -81,7 +81,8 @@ export default {
 @mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
   overflow: hidden;
   position: relative;
-  line-height: $lineHeight;
+ // line-height: $lineHeight;
+  line-height: 1.3em;
   max-height: $lineHeight * $lineCount;
   text-align: justify;
   padding-right: 1.3em;
@@ -196,7 +197,7 @@ export default {
           color: $grey-400;
           letter-spacing: .45rem;
           font-weight: 300;
-          @include multiLineEllipsis($lineHeight: 1.2em, $lineCount: 3, $bgColor: white);
+          @include multiLineEllipsis($lineHeight: 1.25em, $lineCount: 3, $bgColor: white);
         }
       }
     }

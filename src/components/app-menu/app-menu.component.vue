@@ -78,8 +78,8 @@ export default {
     right: 5.7rem;
     top: 8.7rem;
     background-color: $white;
-    width: 9rem;
-    height: 9rem;
+    width: 8rem;
+    height: 8rem;
     display: flex;
     align-items: center;
     justify-content: center;
