@@ -21,7 +21,7 @@
                     class="product-list__item"
                     :product="product"
                     v-for="product in categoryProducts.slice(0, numberOfDisplayedProducts)"
-                    @click.native="goToProduct(product.title)" />
+                    @click.native="goToProduct(product)" />
 
     </div>
 
@@ -68,8 +68,16 @@ export default {
         this.numberOfDisplayedProducts = this.categoryProducts.length;
       }
     },
-    goToProduct(name) {
-      this.$router.push({ path: `/products/${this.currentCategory}/${name}` });
+    goToProduct(product) {
+      // this.$router.push({ path: `/products/${this.currentCategory}/${name}` });
+      this.$router.push({
+        name: 'product-details',
+        params: {
+          category: product.categories,
+          // product,
+          productId: product.id,
+        },
+      });
     },
   },
   computed: {

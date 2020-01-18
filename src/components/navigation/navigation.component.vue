@@ -97,6 +97,8 @@ export default {
 //  width: $navbar-width;
   /*height: 100vh;*/
   background-color: $white;
+  box-shadow: 0 0 10px 0 $box-shadow-color;
+  z-index: 100;
 
   &__logo {
     align-self: center;

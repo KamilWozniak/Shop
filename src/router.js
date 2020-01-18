@@ -19,7 +19,7 @@ export default new Router({
       component: Home,
     },
     {
-      path: '/products/:category/:product',
+      path: '/products/:category/:productId',
       name: 'product-details',
       component: ProductDetails,
     },

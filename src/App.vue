@@ -22,11 +22,12 @@ export default {
     loginStatus,
   },
   methods: {
-    ...mapActions(['fetchCategories', 'fetchProducts']),
+    ...mapActions(['fetchCategories', 'fetchProducts', 'fetchFavorites']),
   },
   created() {
     this.fetchCategories();
     this.fetchProducts();
+    this.fetchFavorites();
     this.$store.commit('setIsLogged', firebase.auth().currentUser !== null);
   },
 };

@@ -62,7 +62,7 @@ export default {
   },
   methods: {
     goToProduct() {
-      this.$router.push({ path: `/products/${this.product.categories}/${this.product.title}` });
+      this.$router.push({ path: `/products/${this.product.categories}/${this.product.id}` });
     },
     ...mapMutations(['increaseAmount', 'decreaseAmount', 'removeFromCart']),
   },
