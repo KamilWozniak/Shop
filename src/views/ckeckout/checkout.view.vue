@@ -1,5 +1,5 @@
 <template>
-  <div class="checkout">
+  <div class="checkout" :class="{'single-grid-area': isCartEmpty}">
     <div v-if="!isCartEmpty"
          class="checkout__cart-items">
 
@@ -23,7 +23,42 @@
 
       <p class="empty-cart__message">Your cart is empty</p>
     </div>
-    <p class="checkout__payment-form"></p>
+    <form class="checkout__payment-form"
+          v-if="!isCartEmpty"
+          @submit.prevent="onSubmit">
+
+      <h1 class="payment-form__title">Payment details:</h1>
+
+      <input placeholder="Name"
+             v-model="userName"
+             type="text"
+             class="payment-form__input"
+             autocomplete="nope" />
+
+      <input placeholder="Last Name"
+             v-model="userLastName"
+             type="text"
+             class="payment-form__input"
+             autocomplete="nope" />
+
+      <input placeholder="E-mail"
+             v-model="userEmail"
+             type="email"
+             class="payment-form__input"
+             autocomplete="nope" />
+
+      <input placeholder="Address"
+             v-model="userAddress"
+             type="text"
+             class="payment-form__input"
+             autocomplete="nope"/>
+
+      <button class="payment-form__button"
+              type="submit">
+
+        checkout
+      </button>
+    </form>
   </div>
 </template>
 
@@ -35,6 +70,14 @@ export default {
   name: 'checkout',
   components: {
     ProductTile,
+  },
+  data() {
+    return {
+      userName: '',
+      userLastName: '',
+      userEmail: '',
+      userAddress: '',
+    };
   },
   computed: {
     cart() {
@@ -51,6 +94,12 @@ export default {
         total += (parseFloat(item.price) * parseFloat(item.amount));
       });
       return total;
+    },
+    onSubmit() {
+      this.userAddress = '';
+      this.userLastName = '';
+      this.userEmail = '';
+      this.userName = '';
     },
   },
   beforeRouteEnter(to, from, next) {
@@ -90,7 +139,8 @@ export default {
   }
 
   &__cart-items {
-    padding-left: 25rem;
+    /*padding-left: 8rem;*/
+    max-width: fit-content;
 
     .cart-items {
 
@@ -125,5 +175,81 @@ export default {
       }
     }
   }
+
+  &__payment-form {
+    display: flex;
+    flex-direction: column;
+    max-width: 90rem;
+    padding-left: 10rem;
+    /*min-width: 50vw;*/
+
+    .payment-form {
+      &__title {
+        font-size: 7.2rem;
+        letter-spacing: 1.8px;
+        color: $black;
+        font-weight: 300;
+        margin-bottom: 10rem;
+      }
+
+      &__input {
+        height: 6rem;
+        min-width: 50rem;
+        width: 100%;
+        font-size: 3rem;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        border-bottom: 1px black solid;
+        margin-bottom: 5rem;
+        background-color: transparent;
+
+        &:focus {
+          outline: none;
+        }
+
+      }
+
+      &__button {
+        font-size: 3rem;
+        width: 100%;
+        cursor: pointer;
+        background-color: $primary;
+        border-radius: 5rem;
+        border: none;
+        color: $white;
+        padding: 1rem;
+        margin-top: 3rem;
+        text-transform: uppercase;
+
+        &:focus {
+          outline: none;
+        }
+      }
+    }
+  }
+}
+
+.single-grid-area {
+  grid-template-columns: 1fr;
+}
+
+@media screen and (min-height: 360px) and (min-width: 499px) and (max-width: 975px){
+  .checkout {
+    grid-template-columns: 1fr;
+
+    &__cart-items {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    &__payment-form {
+      margin-top: 10rem;
+      margin-right: auto;
+      margin-left: auto;
+      padding: 0;
+    }
+  }
+
 }
 </style>

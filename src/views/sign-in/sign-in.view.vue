@@ -3,21 +3,31 @@
     <form @submit.prevent="signIn"
           class="sign-in__form">
 
-      <label class="sign-in__label">Mail: </label>
+      <label class="sign-in__label"
+             for="email">
+
+        Mail:
+      </label>
       <input placeholder="Enter an email"
              v-model="email"
+             id="email"
              type="email"
              class="sign-in__input"
-             autocomplete="off">
+             autocomplete="off" />
 
-      <label class="sign-in__label">Password: </label>
+      <label class="sign-in__label"
+            for="password">
+
+        Password:
+      </label>
       <input placeholder="Enter a password"
              v-model="password"
+             id="password"
              type="password"
              class="sign-in__input"
              autocomplete="off">
 
-      <button class="sign-in__btn"
+      <button class="sign-in__button"
               type="submit">
 
         Sign in
@@ -103,7 +113,7 @@ export default {
 
   }
 
-  &__btn {
+  &__button {
     font-size: 3rem;
     width: 100%;
     cursor: pointer;
