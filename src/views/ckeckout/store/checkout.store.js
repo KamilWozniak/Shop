@@ -1,50 +1,87 @@
+import * as Services from '../../../services/api.services';
+
 export default {
   state: {
     cart: [],
   },
   mutations: {
-    addToCart(state, item) {
-      if (item.amount === 0) {
+    addToCart(state, payload) {
+      if (payload.item.amount === 0) {
         return;
       }
 
-      if (state.cart.find(product => product.id === item.id)) {
-        const index = state.cart.findIndex(product => product.id === item.id);
+      if (state.cart.find(product => product.id === payload.item.id)) {
+        const index = state.cart.findIndex(product => product.id === payload.item.id);
 
         if (state.cart[index].amount >= state.cart[index].quantity) {
           return;
         }
-        if (item.amount) {
-          state.cart[index].amount += item.amount;
-        } else {
-          state.cart[index].amount += 1;
-        }
-      } else if (!item.amount) {
+        state.cart[index].amount = payload.amount;
+      } else if (!payload.item.amount) {
         const newItem = {
-          ...item,
-          amount: 1,
+          ...payload.item,
+          amount: payload.amount,
         };
         state.cart = [...state.cart, newItem];
       } else {
-        state.cart = [...state.cart, item];
+        state.cart = [...state.cart, payload.item];
       }
     },
 
-    increaseAmount(state, id) {
-      const index = state.cart.findIndex(product => product.id === id);
-      state.cart[index].amount += 1;
-    },
-    decreaseAmount(state, id) {
-      const index = state.cart.findIndex(product => product.id === id);
-      if (state.cart[index].amount === 1) {
-        state.cart.splice(index, 1);
-      } else {
-        state.cart[index].amount -= 1;
-      }
+    // increaseAmount(state, payload) {
+    //   const index = state.cart.findIndex(product => product.id === payload.id);
+    //   state.cart[index].amount = payload.amount;
+    // },
+    // decreaseAmount(state, payload) {
+    //   const index = state.cart.findIndex(product => product.id === payload.id);
+    //   if (state.cart[index].amount === 1) {
+    //     state.cart.splice(index, 1);
+    //   } else {
+    //     state.cart[index].amount = payload.amount;
+    //   }
+    // },
+    setAmount(state, payload) {
+      const index = state.cart.findIndex(product => product.id === payload.id);
+      state.cart[index].amount = payload.amount;
     },
     removeFromCart(state, id) {
       const index = state.cart.findIndex(product => product.id === id);
       state.cart.splice(index, 1);
+    },
+    setCartItems(state, payload) {
+      state.cart = payload;
+    },
+  },
+  actions: {
+    async setCartItems({ state }) {
+      try {
+        await Services.setCartItems(state.cart);
+      } catch (e) {
+        throw Error;
+      }
+    },
+    async getCartItems({ commit }) {
+      try {
+        const response = await Services.fetchCartItems();
+        commit('setCartItems', response.data.cartItems);
+      } catch (e) {
+        throw Error;
+      }
+    },
+
+    async setAmount({ commit, dispatch }, payload) {
+      if (!payload.productRemoved) {
+        commit('setAmount', payload);
+      }
+      await dispatch('setCartItems');
+    },
+    async removeFromCart({ commit, dispatch }, payload) {
+      commit('removeFromCart', payload);
+      await dispatch('setCartItems');
+    },
+    async addToCart({ commit, dispatch }, payload) {
+      commit('addToCart', payload);
+      await dispatch('setCartItems');
     },
   },
   getters: {

@@ -23,15 +23,15 @@
       </div>
       <div class="content__section content__section--quantity">
         <span class="quantity-btn"
-              @click.stop="decreaseAmount(product.id)">
+              @click.stop="setAmount('SUBTRACT')">
 
           <span>-</span>
         </span>
-        <p>{{product.amount}}</p>
+        <p>{{itemAmount}}</p>
         <span class="quantity-btn"
-              @click.stop="increaseAmount(product.id)"
+              @click.stop="setAmount('ADD')"
               :class="{ 'hide'
-               :product.amount === product.quantity }">
+               :itemAmount === product.quantity }">
 
           <span>+</span>
         </span>
@@ -50,7 +50,8 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
+import debounce from 'debounce';
 
 export default {
   name: 'checkout',
@@ -60,11 +61,55 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      itemAmount: null,
+    };
+  },
   methods: {
     goToProduct() {
       this.$router.push({ path: `/products/${this.product.categories}/${this.product.id}` });
     },
-    ...mapMutations(['increaseAmount', 'decreaseAmount', 'removeFromCart']),
+    ...mapActions(['removeFromCart']),
+    // eslint-disable-next-line func-names
+    setAmountDebounced: debounce(function (action, amount, productRemoved = false) {
+      this.$store.dispatch('setAmount',
+        {
+          id: this.product.id, amount, action, productRemoved,
+        });
+    }, 500),
+    setAmount(action) {
+      switch (action) {
+        case 'ADD': {
+          if (this.itemAmount === this.product.quantity) {
+            return;
+          }
+
+          this.itemAmount += 1;
+          this.setAmountDebounced(action, this.itemAmount);
+          break;
+        }
+
+        case 'SUBTRACT': {
+          if (this.itemAmount === 1) {
+            this.$store.commit('removeFromCart', this.product.id);
+            this.setAmountDebounced(action, null, true);
+          } else {
+            this.itemAmount -= 1;
+            this.setAmountDebounced(action, this.itemAmount);
+          }
+
+          break;
+        }
+
+        default: {
+          break;
+        }
+      }
+    },
+  },
+  created() {
+    this.itemAmount = this.product.amount;
   },
   computed: {
     image() {
@@ -205,6 +250,6 @@ export default {
 }
 
 .hide {
-  display: none;
+  opacity: 0;
 }
 </style>

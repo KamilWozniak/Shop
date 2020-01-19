@@ -69,12 +69,10 @@ export default {
       }
     },
     goToProduct(product) {
-      // this.$router.push({ path: `/products/${this.currentCategory}/${name}` });
       this.$router.push({
         name: 'product-details',
         params: {
           category: product.categories,
-          // product,
           productId: product.id,
         },
       });
@@ -95,6 +93,7 @@ export default {
       await store.dispatch('fetchProducts');
     }
     store.commit('filterProducts', route);
+    await store.dispatch('getCartItems');
     next();
   },
 };

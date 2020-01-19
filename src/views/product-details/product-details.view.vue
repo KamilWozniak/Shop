@@ -59,7 +59,7 @@
         </div>
         <button class="cart-actions-container__add-button"
                 :class="{'disabled': !maxAmount}"
-                @click="addToCart">
+                @click="addToCart()">
 
           add to card
         </button>
@@ -85,6 +85,7 @@ export default {
       amount: 0,
       maxAmount: null,
       likes: null,
+      numberOfItemsInCart: null,
     };
   },
   methods: {
@@ -99,14 +100,14 @@ export default {
       }
     },
     addToCart() {
-      this.$store.commit('addToCart', {
-        ...this.product,
-        amount: this.amount,
-      });
+      this.$store.dispatch('addToCart',
+        {
+          item: this.product,
+          amount: this.numberOfItemsInCart + this.amount,
+        });
       this.maxAmount -= this.amount;
-      if (this.amount > this.maxAmount) {
-        this.amount = this.maxAmount;
-      }
+
+      this.numberOfItemsInCart += this.amount;
       this.amount = 0;
     },
     async toggleFavorites() {
@@ -140,14 +141,12 @@ export default {
   created() {
     this.product = this.$store.state.products
       .find(item => item.id === Number(this.$route.params.productId));
-    this.product = {
-      ...this.product,
-      amount: 0,
-    };
+
     const productInCart = this.$store.state.checkoutStore.cart
       .find(item => item.id === this.product.id);
-    const numberOfItemsInCart = productInCart ? productInCart.amount : 0;
-    this.maxAmount = this.product.quantity - numberOfItemsInCart;
+
+    this.numberOfItemsInCart = productInCart ? productInCart.amount : 0;
+    this.maxAmount = this.product.quantity - this.numberOfItemsInCart;
     this.likes = this.product.likes;
   },
 
@@ -156,6 +155,7 @@ export default {
       try {
         await Store.dispatch('fetchProducts');
         await Store.dispatch('fetchFavorites');
+        await Store.dispatch('getCartItems');
         next();
       } catch (e) {
         throw Error;
