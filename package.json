@@ -1,4 +1,4 @@
-  {
+{
   "name": "shop",
   "version": "0.1.0",
   "private": true,
@@ -26,7 +26,8 @@
     "lint-staged": "^8.1.5",
     "sass": "^1.18.0",
     "sass-loader": "^7.1.0",
-    "vue-template-compiler": "^2.6.10"
+    "vue-template-compiler": "^2.6.10",
+    "serialize-javascript": "^2.1.2"
   },
   "gitHooks": {
     "pre-commit": "lint-staged"
