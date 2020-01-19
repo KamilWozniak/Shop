@@ -109,14 +109,6 @@ export default {
       next('/sign-in');
     }
   },
-  async beforeRouteLeave(to, from, next) {
-    console.log('cart items sent to API');
-    if (this.$store.state.checkoutStore.cart.length) {
-      await this.$store.dispatch('setCartItems');
-    }
-    next();
-  },
-
 };
 </script>
 

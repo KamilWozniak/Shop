@@ -31,7 +31,7 @@
         <span class="quantity-btn"
               @click.stop="setAmount('ADD')"
               :class="{ 'hide'
-               :product.amount === product.quantity }">
+               :itemAmount === product.quantity }">
 
           <span>+</span>
         </span>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 import debounce from 'debounce';
 
 export default {
@@ -70,36 +70,21 @@ export default {
     goToProduct() {
       this.$router.push({ path: `/products/${this.product.categories}/${this.product.id}` });
     },
-    ...mapMutations(['removeFromCart']),
-
-    // increaseAmountDebounced: debounce(function () {
-    //   this.$store.dispatch('increaseAmount', { id: this.product.id, amount: this.itemAmount });
-    // }, 2000),
-    // increaseAmount() {
-    //   this.itemAmount += 1;
-    //   this.increaseAmountDebounced();
-    // },
-    //
-    // decreaseAmountDebounced: debounce(function () {
-    //   this.$store.dispatch('decreaseAmount', { id: this.product.id, amount: this.itemAmount });
-    // }, 2000),
-    // decreaseAmount() {
-    //   this.itemAmount -= 1;
-    //   this.decreaseAmountDebounced();
-    // },
-
-
+    ...mapActions(['removeFromCart']),
     // eslint-disable-next-line func-names
     setAmountDebounced: debounce(function (action, amount, productRemoved = false) {
-      // console.log('setting');
       this.$store.dispatch('setAmount',
         {
           id: this.product.id, amount, action, productRemoved,
         });
-    }, 1000),
+    }, 500),
     setAmount(action) {
       switch (action) {
         case 'ADD': {
+          if (this.itemAmount === this.product.quantity) {
+            return;
+          }
+
           this.itemAmount += 1;
           this.setAmountDebounced(action, this.itemAmount);
           break;
@@ -265,6 +250,6 @@ export default {
 }
 
 .hide {
-  display: none;
+  opacity: 0;
 }
 </style>

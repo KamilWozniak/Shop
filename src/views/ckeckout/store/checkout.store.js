@@ -5,30 +5,26 @@ export default {
     cart: [],
   },
   mutations: {
-    addToCart(state, item) {
-      if (item.amount === 0) {
+    addToCart(state, payload) {
+      if (payload.item.amount === 0) {
         return;
       }
 
-      if (state.cart.find(product => product.id === item.id)) {
-        const index = state.cart.findIndex(product => product.id === item.id);
+      if (state.cart.find(product => product.id === payload.item.id)) {
+        const index = state.cart.findIndex(product => product.id === payload.item.id);
 
         if (state.cart[index].amount >= state.cart[index].quantity) {
           return;
         }
-        if (item.amount) {
-          state.cart[index].amount += item.amount;
-        } else {
-          state.cart[index].amount += 1;
-        }
-      } else if (!item.amount) {
+        state.cart[index].amount = payload.amount;
+      } else if (!payload.item.amount) {
         const newItem = {
-          ...item,
-          amount: 1,
+          ...payload.item,
+          amount: payload.amount,
         };
         state.cart = [...state.cart, newItem];
       } else {
-        state.cart = [...state.cart, item];
+        state.cart = [...state.cart, payload.item];
       }
     },
 
@@ -46,13 +42,7 @@ export default {
     // },
     setAmount(state, payload) {
       const index = state.cart.findIndex(product => product.id === payload.id);
-      // if (payload.action === 'SUBTRACT' && state.cart[index].amount === 1) {
-      //   state.cart.splice(index, 1);
-      // } else {
-      // if (state.cart[index]) {
       state.cart[index].amount = payload.amount;
-      // }
-      // }
     },
     removeFromCart(state, id) {
       const index = state.cart.findIndex(product => product.id === id);
@@ -78,18 +68,19 @@ export default {
         throw Error;
       }
     },
-    // async increaseAmount({ commit, dispatch }, payload) {
-    //   commit('increaseAmount', payload);
-    //   await dispatch('setCartItems');
-    // },
-    // async decreaseAmount({ commit, dispatch }, payload) {
-    //   commit('decreaseAmount', payload);
-    //   await dispatch('setCartItems');
-    // },
+
     async setAmount({ commit, dispatch }, payload) {
       if (!payload.productRemoved) {
         commit('setAmount', payload);
       }
+      await dispatch('setCartItems');
+    },
+    async removeFromCart({ commit, dispatch }, payload) {
+      commit('removeFromCart', payload);
+      await dispatch('setCartItems');
+    },
+    async addToCart({ commit, dispatch }, payload) {
+      commit('addToCart', payload);
       await dispatch('setCartItems');
     },
   },

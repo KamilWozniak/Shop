@@ -24,7 +24,7 @@
         </p>
       </div>
     </div>
-    <button @click.stop="addToCart"
+    <button @click.stop="addToCart()"
             class="product-tile__btn"
             :class="{'product-tile__btn--disabled': product.quantity === 0
              || !checkIfCanOrderMore()}">
@@ -32,11 +32,15 @@
 
       {{getButtonText()}}
     </button>
-    <span class="product-tile__info">{{inCart ? `In Cart: ${howManyInCart}` : ''}}</span>
+    <span class="product-tile__info">
+      {{this.howManyInCart > 0 ? `In Cart: ${howManyInCart}` : ''}}
+    </span>
   </div>
 </template>
 
 <script>
+import debounce from 'debounce';
+
 export default {
   name: 's-product-tile',
   props: {
@@ -48,6 +52,7 @@ export default {
   data() {
     return {
       howManyInCart: 0,
+      maxAmount: null,
     };
   },
   computed: {
@@ -56,26 +61,24 @@ export default {
         return this.$store.getters.inCart(this.product.id);
       },
       set() {
+
       },
     },
   },
   methods: {
+
+    // eslint-disable-next-line func-names
+    addToCartDebounced: debounce(function () {
+      this.$store.dispatch('addToCart', { item: this.product, amount: this.howManyInCart });
+    }, 500),
     addToCart() {
-      if (this.product.quantity > 0) {
-        this.$store.commit('addToCart', this.product);
+      if (this.product.quantity > 0 && this.howManyInCart < this.product.quantity) {
+        this.howManyInCart += 1;
+        this.addToCartDebounced();
       }
     },
     checkIfCanOrderMore() {
-      if (this.inCart) {
-        const index = this.$store.state.checkoutStore.cart
-          .findIndex(product => product.id === this.product.id);
-        this.howManyInCart = this.$store.state.checkoutStore.cart[index].amount;
-        if (this.$store.state.checkoutStore.cart[index].amount
-          >= this.$store.state.checkoutStore.cart[index].quantity) {
-          return false;
-        }
-      }
-      return true;
+      return this.howManyInCart < this.product.quantity;
     },
     getButtonText() {
       if (this.product.quantity > 0 && this.checkIfCanOrderMore()) {
@@ -89,6 +92,13 @@ export default {
       }
       return 'add to cart';
     },
+  },
+  created() {
+    if (this.inCart) {
+      const index = this.$store.state.checkoutStore.cart
+        .findIndex(product => product.id === this.product.id);
+      this.howManyInCart = this.$store.state.checkoutStore.cart[index].amount;
+    }
   },
 };
 </script>
