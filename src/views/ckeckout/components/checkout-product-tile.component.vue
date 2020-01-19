@@ -23,13 +23,13 @@
       </div>
       <div class="content__section content__section--quantity">
         <span class="quantity-btn"
-              @click.stop="decreaseAmount(product.id)">
+              @click.stop="setAmount('SUBTRACT')">
 
           <span>-</span>
         </span>
-        <p>{{product.amount}}</p>
+        <p>{{itemAmount}}</p>
         <span class="quantity-btn"
-              @click.stop="increaseAmount(product.id)"
+              @click.stop="setAmount('ADD')"
               :class="{ 'hide'
                :product.amount === product.quantity }">
 
@@ -51,6 +51,7 @@
 
 <script>
 import { mapMutations } from 'vuex';
+import debounce from 'debounce';
 
 export default {
   name: 'checkout',
@@ -60,11 +61,70 @@ export default {
       required: true,
     },
   },
+  data() {
+    return {
+      itemAmount: null,
+    };
+  },
   methods: {
     goToProduct() {
       this.$router.push({ path: `/products/${this.product.categories}/${this.product.id}` });
     },
-    ...mapMutations(['increaseAmount', 'decreaseAmount', 'removeFromCart']),
+    ...mapMutations(['removeFromCart']),
+
+    // increaseAmountDebounced: debounce(function () {
+    //   this.$store.dispatch('increaseAmount', { id: this.product.id, amount: this.itemAmount });
+    // }, 2000),
+    // increaseAmount() {
+    //   this.itemAmount += 1;
+    //   this.increaseAmountDebounced();
+    // },
+    //
+    // decreaseAmountDebounced: debounce(function () {
+    //   this.$store.dispatch('decreaseAmount', { id: this.product.id, amount: this.itemAmount });
+    // }, 2000),
+    // decreaseAmount() {
+    //   this.itemAmount -= 1;
+    //   this.decreaseAmountDebounced();
+    // },
+
+
+    // eslint-disable-next-line func-names
+    setAmountDebounced: debounce(function (action, amount, productRemoved = false) {
+      // console.log('setting');
+      this.$store.dispatch('setAmount',
+        {
+          id: this.product.id, amount, action, productRemoved,
+        });
+    }, 1000),
+    setAmount(action) {
+      switch (action) {
+        case 'ADD': {
+          this.itemAmount += 1;
+          this.setAmountDebounced(action, this.itemAmount);
+          break;
+        }
+
+        case 'SUBTRACT': {
+          if (this.itemAmount === 1) {
+            this.$store.commit('removeFromCart', this.product.id);
+            this.setAmountDebounced(action, null, true);
+          } else {
+            this.itemAmount -= 1;
+            this.setAmountDebounced(action, this.itemAmount);
+          }
+
+          break;
+        }
+
+        default: {
+          break;
+        }
+      }
+    },
+  },
+  created() {
+    this.itemAmount = this.product.amount;
   },
   computed: {
     image() {
