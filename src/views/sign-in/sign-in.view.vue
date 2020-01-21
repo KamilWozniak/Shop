@@ -16,7 +16,7 @@
              autocomplete="off" />
 
       <label class="sign-in__label"
-            for="password">
+             for="password">
 
         Password:
       </label>

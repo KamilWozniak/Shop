@@ -44,12 +44,15 @@
 
     </router-link>
 
-    <div v-else @click="signOut" class="navigation__link">
+    <div v-else
+         @click="signOut"
+         class="navigation__link">
+
       <router-link to="/"
                    class="router-link">
 
-            <app-icon icon="logout"
-                      prop-class="navigation__link__login-item" />
+        <app-icon icon="logout"
+                  prop-class="navigation__link__login-item" />
 
       </router-link>
     </div>
@@ -58,20 +61,15 @@
 
 <script>
 import { mapState } from 'vuex';
-import AppIcon from '../app-icon/app-icon.component.vue';
+import AppIcon      from '../app-icon/app-icon.component.vue';
 
 export default {
   name: 'navigation',
   components: {
     AppIcon,
   },
-  data() {
-    return {
-      // currentPath: this.$router.currentRoute.fullPath,
-    };
-  },
   computed: {
-    ...mapState(['currentPath']),
+    ...mapState([ 'currentPath' ]),
     numberOfCartItems() {
       let numberOfItems = 0;
       this.$store.state.checkoutStore.cart.forEach((item) => {
@@ -94,11 +92,10 @@ export default {
   display: flex;
   flex-direction: column;
   justify-items: start;
-//  width: $navbar-width;
-  /*height: 100vh;*/
   background-color: $white;
   box-shadow: 0 0 10px 0 $box-shadow-color;
   z-index: 100;
+  min-height: 100vh;
 
   &__logo {
     align-self: center;
@@ -168,70 +165,13 @@ export default {
       }
     }
   }
+
   .active {
     color: $primary;
   }
-
 }
 
-/*
-@media screen and (max-width: $end-of-large-screen) and (min-width: $end-of-medium-screen + 1) {
-  .navigation {
-    width: $navbar-width-lg;
-    overflow: hidden;
-
-    &__logo {
-      margin-bottom: auto;
-    }
-
-    &__link {
-      margin-bottom: 4rem;
-
-      &:last-child {
-        margin-bottom: 40vh;
-      }
-    }
-  }
+.router-link {
+  text-decoration: none;
 }
-
-@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
-  .navigation {
-    width: $navbar-width-md;
-    overflow: hidden;
-
-    &__logo {
-      margin-bottom: auto;
-    }
-
-    &__link {
-      margin-bottom: 4rem;
-
-      &:last-child {
-        margin-bottom: 50vh;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: $end-of-small-screen) {
-  .navigation {
-    height: $navbar-width-sm;
-    flex-direction: row;
-    width: 100vw;
-    justify-content: space-around;
-
-    &__logo {
-      margin-bottom: 0;
-      margin-top: 5px;
-    }
-
-    &__link {
-      margin: 0;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-} */
 </style>

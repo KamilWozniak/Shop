@@ -46,7 +46,7 @@
               <span>-</span>
             </span>
 
-            <p class="quantity__value">{{amount}}</p>
+            <p class="quantity__value">{{ amount }}</p>
 
             <span class="quantity__button"
                   :class="{'hidden': !maxAmount || amount === maxAmount }"
@@ -71,7 +71,6 @@
 
 <script>
 import appIcon from '@/components/app-icon/app-icon.component.vue';
-// eslint-disable-next-line import/no-cycle
 import Store   from '../../store/store';
 
 export default {
@@ -123,11 +122,11 @@ export default {
               favorites.push(identifier);
             }
           });
-        products[index].likes -= 1;
+        products[ index ].likes -= 1;
         this.likes -= 1;
       } else {
-        favorites = [...this.$store.state.userFavorites, this.product.id];
-        products[index].likes += 1;
+        favorites = [ ...this.$store.state.userFavorites, this.product.id ];
+        products[ index ].likes += 1;
         this.likes += 1;
       }
 

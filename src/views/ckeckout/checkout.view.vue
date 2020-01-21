@@ -7,6 +7,7 @@
       <div class="cart-items__list">
         <product-tile v-for="product in cart"
                       :key="product.id"
+                      class="single-product-item"
                       :product="product" />
 
       </div>
@@ -51,7 +52,7 @@
              v-model="userAddress"
              type="text"
              class="payment-form__input"
-             autocomplete="nope"/>
+             autocomplete="nope" />
 
       <button class="payment-form__button"
               type="submit">
@@ -139,7 +140,6 @@ export default {
   }
 
   &__cart-items {
-    /*padding-left: 8rem;*/
     max-width: fit-content;
 
     .cart-items {
@@ -181,7 +181,6 @@ export default {
     flex-direction: column;
     max-width: 90rem;
     padding-left: 10rem;
-    /*min-width: 50vw;*/
 
     .payment-form {
       &__title {
@@ -234,7 +233,7 @@ export default {
   grid-template-columns: 1fr;
 }
 
-@media screen and (min-height: 360px) and (min-width: 499px) and (max-width: 975px){
+@media screen and (min-height: 360px) and (min-width: 200px) and (max-width: 1300px) {
   .checkout {
     grid-template-columns: 1fr;
 
@@ -249,6 +248,10 @@ export default {
       margin-left: auto;
       padding: 0;
     }
+  }
+
+  .single-product-item {
+    width: 70vw;
   }
 
 }

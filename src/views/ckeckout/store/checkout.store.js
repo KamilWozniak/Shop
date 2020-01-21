@@ -13,36 +13,24 @@ export default {
       if (state.cart.find(product => product.id === payload.item.id)) {
         const index = state.cart.findIndex(product => product.id === payload.item.id);
 
-        if (state.cart[index].amount >= state.cart[index].quantity) {
+        if (state.cart[ index ].amount >= state.cart[ index ].quantity) {
           return;
         }
-        state.cart[index].amount = payload.amount;
+        state.cart[ index ].amount = payload.amount;
       } else if (!payload.item.amount) {
         const newItem = {
           ...payload.item,
           amount: payload.amount,
         };
-        state.cart = [...state.cart, newItem];
+        state.cart = [ ...state.cart, newItem ];
       } else {
-        state.cart = [...state.cart, payload.item];
+        state.cart = [ ...state.cart, payload.item ];
       }
     },
 
-    // increaseAmount(state, payload) {
-    //   const index = state.cart.findIndex(product => product.id === payload.id);
-    //   state.cart[index].amount = payload.amount;
-    // },
-    // decreaseAmount(state, payload) {
-    //   const index = state.cart.findIndex(product => product.id === payload.id);
-    //   if (state.cart[index].amount === 1) {
-    //     state.cart.splice(index, 1);
-    //   } else {
-    //     state.cart[index].amount = payload.amount;
-    //   }
-    // },
     setAmount(state, payload) {
       const index = state.cart.findIndex(product => product.id === payload.id);
-      state.cart[index].amount = payload.amount;
+      state.cart[ index ].amount = payload.amount;
     },
     removeFromCart(state, id) {
       const index = state.cart.findIndex(product => product.id === id);

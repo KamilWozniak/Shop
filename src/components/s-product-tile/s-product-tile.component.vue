@@ -26,9 +26,7 @@
     </div>
     <button @click.stop="addToCart()"
             class="product-tile__btn"
-            :class="{'product-tile__btn--disabled': product.quantity === 0
-             || !checkIfCanOrderMore()}">
-
+            :class="{ 'product-tile__btn--disabled': product.quantity === 0 || !checkIfCanOrderMore() }">
 
       {{getButtonText()}}
     </button>
@@ -60,14 +58,9 @@ export default {
       get() {
         return this.$store.getters.inCart(this.product.id);
       },
-      set() {
-
-      },
     },
   },
   methods: {
-
-    // eslint-disable-next-line func-names
     addToCartDebounced: debounce(function () {
       this.$store.dispatch('addToCart', { item: this.product, amount: this.howManyInCart });
     }, 500),
@@ -97,7 +90,7 @@ export default {
     if (this.inCart) {
       const index = this.$store.state.checkoutStore.cart
         .findIndex(product => product.id === this.product.id);
-      this.howManyInCart = this.$store.state.checkoutStore.cart[index].amount;
+      this.howManyInCart = this.$store.state.checkoutStore.cart[ index ].amount;
     }
   },
 };
@@ -111,14 +104,15 @@ export default {
   height: 45rem;
   display: grid;
   grid-template-columns: 100%;
-  /*grid-template-rows: 28rem 15rem;*/
-  grid-template-rows: 4fr 1fr;
+  grid-template-rows: 1fr 1fr;
+
   cursor: pointer;
   padding: 1rem;
 
   &__wrapper {
     position: relative;
     overflow: hidden;
+
     &:hover {
       box-shadow: 1rem 1rem 1rem 0 $box-shadow-color;
     }
@@ -172,13 +166,12 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
+    height: 27rem;
   }
 
   &__image {
     max-height: 100%;
     max-width: 100%;
-    width: auto;
-    height: auto;
   }
 
   &__description {
@@ -211,7 +204,6 @@ export default {
       }
 
       &__price {
-        /*margin-top: 2rem;*/
         color: $primary;
         font-weight: bold;
         letter-spacing: 4.5px;
@@ -221,29 +213,4 @@ export default {
   }
 }
 
-/*
-@media screen and (max-width: $end-of-medium-screen) and (min-width: $end-of-small-screen + 1) {
-  .product-tile {
-    &__description {
-      padding: 1rem 2rem;
-
-      .description__title {
-        font-size: 2rem;
-      }
-    }
-  }
-}
-
-@media screen and (max-width: $end-of-small-screen) {
-  .product-tile {
-    &__description {
-      padding: 1rem 2rem;
-
-      .description__title {
-        font-size: 3rem;
-      }
-    }
-  }
-}
-*/
 </style>

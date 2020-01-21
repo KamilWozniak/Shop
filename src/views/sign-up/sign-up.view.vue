@@ -29,8 +29,10 @@
              class="sign-up__input"
              autocomplete="off">
 
-      <p class="warning-message">{{correctPasswordLength && !equalPasswords
-        && confirmPassword.length > 0 ? 'Passwords are not equal!' : ''}}</p>
+      <p class="warning-message">
+        {{correctPasswordLength && !equalPasswords
+            && confirmPassword.length > 0 ? 'Passwords are not equal!' : ''}}
+      </p>
 
       <button type="submit" class="sign-up__btn">Sign up</button>
     </form>

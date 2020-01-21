@@ -23,15 +23,14 @@
       </div>
       <div class="content__section content__section--quantity">
         <span class="quantity-btn"
-              @click.stop="setAmount('SUBTRACT')">
+              @click.stop="setAmount(SUBTRACT)">
 
           <span>-</span>
         </span>
         <p>{{itemAmount}}</p>
         <span class="quantity-btn"
-              @click.stop="setAmount('ADD')"
-              :class="{ 'hide'
-               :itemAmount === product.quantity }">
+              @click.stop="setAmount(ADD)"
+              :class="{ 'hide': itemAmount === product.quantity }">
 
           <span>+</span>
         </span>
@@ -50,8 +49,9 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import debounce from 'debounce';
+import { mapActions }    from 'vuex';
+import debounce          from 'debounce';
+import { ADD, SUBTRACT } from '@/helpers/variables';
 
 export default {
   name: 'checkout',
@@ -64,14 +64,15 @@ export default {
   data() {
     return {
       itemAmount: null,
+      ADD,
+      SUBTRACT,
     };
   },
   methods: {
     goToProduct() {
       this.$router.push({ path: `/products/${this.product.categories}/${this.product.id}` });
     },
-    ...mapActions(['removeFromCart']),
-    // eslint-disable-next-line func-names
+    ...mapActions([ 'removeFromCart' ]),
     setAmountDebounced: debounce(function (action, amount, productRemoved = false) {
       this.$store.dispatch('setAmount',
         {
@@ -80,7 +81,7 @@ export default {
     }, 500),
     setAmount(action) {
       switch (action) {
-        case 'ADD': {
+        case this.ADD: {
           if (this.itemAmount === this.product.quantity) {
             return;
           }
@@ -90,7 +91,7 @@ export default {
           break;
         }
 
-        case 'SUBTRACT': {
+        case this.SUBTRACT: {
           if (this.itemAmount === 1) {
             this.$store.commit('removeFromCart', this.product.id);
             this.setAmountDebounced(action, null, true);
@@ -126,7 +127,6 @@ export default {
 @mixin multiLineEllipsis($lineHeight: 1.2em, $lineCount: 1, $bgColor: white) {
   overflow: hidden;
   position: relative;
- // line-height: $lineHeight;
   line-height: 1.3em;
   max-height: $lineHeight * $lineCount;
   text-align: justify;
@@ -226,6 +226,7 @@ export default {
       &--description {
         padding-top: 4rem;
         padding-left: 2rem;
+        padding-right: 2rem;
         height: 100%;
         overflow-y: hidden;
 

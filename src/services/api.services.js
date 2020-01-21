@@ -23,13 +23,13 @@ export function fetchCartItems() {
 }
 
 export function setFavorites(payload) {
-  return axios.put(FAVORITES_CDN_URL, { favorites: [...payload] });
+  return axios.put(FAVORITES_CDN_URL, { favorites: [ ...payload ] });
 }
 
 export function setProducts(payload) {
-  return axios.put(PRODUCTS_CDN_URL, { products: [...payload] });
+  return axios.put(PRODUCTS_CDN_URL, { products: [ ...payload ] });
 }
 
 export function setCartItems(payload) {
-  return axios.put(CART_CDN_URL, { cartItems: [...payload] });
+  return axios.put(CART_CDN_URL, { cartItems: [ ...payload ] });
 }

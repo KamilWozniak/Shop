@@ -60,7 +60,6 @@ html {
   margin: 0;
   font-size: 1.8rem;
   box-sizing: border-box;
-  /*line-height: 1.2;*/
   font-family: Lato;
 }
 

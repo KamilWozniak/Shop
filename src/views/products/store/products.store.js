@@ -1,5 +1,5 @@
-// eslint-disable-next-line import/no-cycle
-import store from '../../../store/store';
+import store              from '../../../store/store';
+import { ALL_CATEGORIES } from '@/helpers/variables';
 
 export default {
   state: {
@@ -7,7 +7,7 @@ export default {
   },
   mutations: {
     filterProducts: (state, category) => {
-      if (category !== 'all categories') {
+      if (category !== ALL_CATEGORIES) {
         state.filteredProducts = store.state.products
           .filter(product => product.categories === category);
       } else {
